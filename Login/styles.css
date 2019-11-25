@@ -1,0 +1,65 @@
+body {
+    background-color: #D0D0D0;
+}
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login{
+    background-color: rgb(85, 85, 85);
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login h3{
+    text-align: center;
+    color: rgb(85, 182, 183);
+}
+.login .btnSubmit {
+    font-weight: 600;
+    color: rgb(85, 182, 183);
+    background-color: #fff;
+}
+.reg-form{
+    padding: 5%;
+    background: rgb(85, 182, 183);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.reg-form h3{
+    text-align: center;
+    color: #fff;
+}
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.reg-form .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: rgb(85, 182, 183);
+}
+.reg-form .btnSubmit{
+    font-weight: 600;
+    color: rgb(85, 182, 183);
+    background-color: #fff;
+}
+.reg-form .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login .ForgetPwd{
+    color: rgb(85, 182, 183);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login .placeholder {
+    padding-top: 16px;
+}
