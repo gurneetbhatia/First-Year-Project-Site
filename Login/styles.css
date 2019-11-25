@@ -63,3 +63,11 @@ body {
 .login .placeholder {
     padding-top: 16px;
 }
+
+.logo {
+    max-width: 10%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
