@@ -1,64 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<?php
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+echo "<!DOCTYPE html>\n";
+echo "<html>\n";
+echo "<head>\n";
+echo "  <title></title>\n";
+echo "  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css\">\n";
+echo "\n";
+echo "  <!-- jQuery library -->\n";
+echo "  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n";
+echo "\n";
+echo "  <!-- Latest compiled JavaScript -->\n";
+echo "  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js\"></script>\n";
+echo "  <link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\">\n";
+echo "</head>\n";
+echo "<body>\n";
+echo "\n";
+echo "  <div class=\"container login-container\">\n";
+echo "    <div class=\"row\">\n";
+echo "        <div class=\"col-md-6 login\">\n";
+echo "            <h3>Login</h3>\n";
+echo "            <form>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                  <input type=\"text\" class=\"form-control\" placeholder=\"Your Email *\" value=\"\" />\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input type=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input type=\"submit\" class=\"btnSubmit\" value=\"Login\" />\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <a href=\"#\" class=\"ForgetPwd\">Forgot Password?</a>\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group placeholder\"></div>\n";
+echo "              <div class=\"form-group placeholder\"></div>\n";
+echo "            </form>\n";
+echo "          </div>\n";
+echo "\n";
+echo "\n";
+echo "          <div class=\"col-md-6 reg-form\">\n";
+echo "            <h3>Register</h3>\n";
+echo "            <form>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input type=\"text\" class=\"form-control\" placeholder=\"Fullname *\" value=\"\" />\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input type=\"text\" class=\"form-control\" placeholder=\"Email *\" value=\"\" />\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input type=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input type=\"password\" class=\"form-control\" placeholder=\"Confirm Password *\" value=\"\" />\n";
+echo "              </div>\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input type=\"submit\" class=\"btnSubmit\" value=\"Register\" />\n";
+echo "              </div>\n";
+echo "            </form>\n";
+echo "          </div>\n";
+echo "         </div>\n";
+echo "  </div>\n";
+echo "  <img class=\"logo\" src=\"../assets/logo1.png\">\n";
+echo "  <script type=\"text/javascript\" src=\"scripts.js\"></script>\n";
+echo "</body>\n";
+echo "</html>\n";
 
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-
-  <div class="container login-container">
-    <div class="row">
-        <div class="col-md-6 login">
-            <?php echo '<h3>Login</h3>' ?>
-            <form>
-              <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Your Email *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Your Password *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btnSubmit" value="Login" />
-              </div>
-              <div class="form-group">
-                <a href="#" class="ForgetPwd">Forgot Password?</a>
-              </div>
-              <div class="form-group placeholder"></div>
-              <div class="form-group placeholder"></div>
-            </form>
-          </div>
-
-
-          <div class="col-md-6 reg-form">
-            <?php echo '<h3>Register</h3>' ?>
-            <form>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Fullname *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Your Password *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Confirm Password *" value="" />
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btnSubmit" value="Register" />
-              </div>
-            </form>
-          </div>
-         </div>
-  </div>
-  <img class="logo" src="../assets/logo1.png">
-  <script type="text/javascript" src="scripts.js"></script>
-</body>
-</html>
+?>
