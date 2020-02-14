@@ -1,7 +1,6 @@
 <?php
 
-include('login.html');
-
+include('login.php');
 
 
 
@@ -13,14 +12,14 @@ include('login.html');
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
-  <form class="modal-form">
+  <form action="confirm_pin.php" method="POST" class="modal-form">
 	  <div class="modal-content">
 	    <span id="close" class="close">&times;</span>
 	    <h2>Enter Pin</h2>
 	    <label for="email"><b>Email</b></label>
-	    <input type="text" placeholder="Enter Email" name="email" required>
+	    <input type="text" placeholder="Enter Email" name="email" id='email' required>
 	    <label for="psw"><b>Pin</b></label>
-	    <input type="password" placeholder="Enter Pin" name="psw" required>
+	    <input type="password" placeholder="Enter Pin" name="psw" id='psw' required>
 	    <button type="submit" class="btn">Enter</button>
 	  </div>
 	</form>

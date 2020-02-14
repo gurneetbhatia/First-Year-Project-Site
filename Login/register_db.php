@@ -1,5 +1,5 @@
 <?php
-include('login.html');
+include('login.php');
 $servername = "remotemysql.com:3306";
 $username = "6s7vM7E9Nh";
 $password = "NL70C8aGk7";
@@ -15,6 +15,8 @@ $name = $_POST['reg_name'];
 $email = $_POST['reg_email'];
 $password = $_POST['reg_passwd'];
 $cpassword = $_POST['reg_cpasswd'];
+$sql = "SELECT * FROM `User` WHERE Email='$email'";
+$result = doSQL($conn, $sql, true);
 if(empty($name) or empty($email))
 {
 	alert('Please provide valid a valid email address and name!');
@@ -25,6 +27,9 @@ elseif((strlen($password) < 8) or (!preg_match("#[0-9]+#", $password)) or (!preg
 elseif(!($password === $cpassword)) {
 	alert("Passwords do not match!");
 }
+elseif($result->num_rows > 0) {
+	alert("Email ID already in use!");
+}
 else {
 	$pin = rand(1000, 9999);
 	$password = password_hash($_POST['reg_passwd'], PASSWORD_DEFAULT);
@@ -32,9 +37,14 @@ else {
 	$date = date('Y-m-d H:i:s');
 	$sql = "INSERT INTO User (Name, Email, Pin, Password, UserID, Created_At) VALUES ('$name', '$email', '$pin', '$password', '$userid', '$date');";
 	doSQL($conn, $sql, false);
+	getPin();
 }
 
-//functionEnterPin()
+function getPin() {
+	echo "<script type='text/javascript'>";
+	echo "window.location.href = 'enter_pin.php';";
+	echo "</script>";
+}
 
 function doSQL($conn, $sql, $testMsgs)
 {
