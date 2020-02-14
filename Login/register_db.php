@@ -32,6 +32,13 @@ elseif($result->num_rows > 0) {
 }
 else {
 	$pin = rand(1000, 9999);
+	$sql = "SELECT * FROM 'User' WHERE Pin=$pin";
+	$result = doSql($conn, $sql, true);
+	while ($result->num_rows > 0) {
+		$pin = rand(1000, 9999);
+		$sql = "SELECT * FROM 'User' WHERE Pin=$pin";
+		$result = doSql($conn, $sql, false);
+	}
 	$password = password_hash($_POST['reg_passwd'], PASSWORD_DEFAULT);
 	$userid = rand(10000, 99999);
 	$date = date('Y-m-d H:i:s');

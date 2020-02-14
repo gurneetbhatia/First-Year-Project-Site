@@ -16,13 +16,19 @@ echo "Connected Successfully";
 $email = $_POST['email'];
 $pin = $_POST['psw'];
 
-$sql = "SELECT `Pin` FROM `User` WHERE Email='$email'";
+$sql = "SELECT `Pin`, UserID FROM `User` WHERE Email='$email'";
 $result = doSQL($conn, $sql, true);
 if ($result->num_rows > 0) {
     // output data of each row
     if($row = $result->fetch_assoc()) {
-        if ($pin === $row['Pin']) {
+    	if (empty($row['Pin'])) {
+	    	alert("Email already verified!", "login.php");
+	    }
+        elseif ($pin === $row['Pin']) {
         	// pin provided is correct
+        	$userid = $row['UserID'];
+        	$sql = "UPDATE `User` SET `Pin`=NULL WHERE UserID=$userid";
+        	doSQL($conn, $sql, true);
         	alert("Correct Pin", "login.php");
         }
        	else {
@@ -30,7 +36,7 @@ if ($result->num_rows > 0) {
        	}
     }
 } else {
-    echo "0 results";
+    alert("Account not found!", 'login.php');
 }
 
 function doSQL($conn, $sql, $testMsgs)
