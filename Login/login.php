@@ -1,5 +1,4 @@
 <?php
-
 echo "<!DOCTYPE html>\n";
 echo "<html>\n";
 echo "<head>\n";
@@ -47,11 +46,11 @@ echo "              </div>\n";
 echo "              <div class=\"form-group\">\n";
 echo "                <input name=\"reg_email\" id=\"reg_email\" type=\"text\" class=\"form-control\" placeholder=\"Email *\" value=\"\" />\n";
 echo "              </div>\n";
-echo "              <div name=\"reg_passwd\" id=\"reg_passwd\" class=\"form-group\">\n";
-echo "                <input type=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n";
+echo "              <div class=\"form-group\">\n";
+echo "                <input name=\"reg_passwd\" id=\"reg_passwd\" type=\"password\" class=\"form-control\" placeholder=\"Your Password *\" value=\"\" />\n";
 echo "              </div>\n";
 echo "              <div class=\"form-group\">\n";
-echo "                <input type=\"password\" class=\"form-control\" placeholder=\"Confirm Password *\" value=\"\" />\n";
+echo "                <input name=\"reg_cpasswd\" id=\"reg_cpasswd\" type=\"password\" class=\"form-control\" placeholder=\"Confirm Password *\" value=\"\" />\n";
 echo "              </div>\n";
 echo "              <div class=\"form-group\">\n";
 echo "                <input type=\"submit\" class=\"btnSubmit\" value=\"Register\" />\n";
@@ -59,7 +58,19 @@ echo "              </div>\n";
 echo "            </form>\n";
 echo "          </div>\n";
 echo "         </div>\n";
-echo "  </div>\n";
+echo "<div class=\"col-md-6 enterpin-form\">\n";
+echo "<form method=\"POST\" action=\"enter_pin.php\">\n";
+echo "<div class=\"form-group\">\n";
+echo "<div class=\"form-group\">\n";
+echo "<input type=\"submit\" class=\"btnSubmit enterPinBtn\" value=\"Enter Registration Pin\" />\n";
+echo "</div>\n";
+echo "</form>\n";
+echo "</div>\n";
+/*echo "<div class='form-popup' id='myForm'";
+echo "<form action='enter_pin.php' class='form-container'>";
+echo "<h1>Enter Pin</h1>";
+echo ""
+echo "  </div>\n";*/
 echo "  <img class=\"logo\" src=\"../assets/logo1.png\">\n";
 echo "  <script type=\"text/javascript\" src=\"scripts.js\"></script>\n";
 echo "</body>\n";
