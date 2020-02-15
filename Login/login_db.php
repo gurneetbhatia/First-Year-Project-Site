@@ -25,7 +25,7 @@ if($result->num_rows > 0) {
 		if (empty($row['Pin'])) {
 			if (password_verify($passwd, $row['Password'])) {
 				// password is correct and the email has been verified
-				changePage("events.php");// change this to home page
+				changePage("../startbootstrap-heroic-features-gh-pages/home.php");// change this to home page
 			}
 			else {
 				alert('Incorrect Password!');
