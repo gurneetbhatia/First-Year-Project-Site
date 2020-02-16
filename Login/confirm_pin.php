@@ -30,55 +30,16 @@ if ($result->num_rows > 0) {
         	$userid = $row['UserID'];
         	$sql = "UPDATE `User` SET `Pin`=NULL WHERE UserID=$userid";
         	doSQL($conn, $sql, true);
-					/*<form action="confirm_pin.php" method="POST" class="modal-form">
-					  <div class="modal-content">
-					    <span id="close" class="close">&times;</span>
-					    <h2>Enter Pin</h2>
-					    <p4>
-				           Correct Pin
-				      </p4>
-					    <!--<input type="text" placeholder="Enter Email" name="email" id='email' required>-->
-					    <!--<label for="psw"><b>Pin</b></label>-->
-					    <!--<input type="password" placeholder="Enter Pin" name="psw" id='psw' required>-->
-					   <!-- <button type="submit" class="btn">Enter</button>-->
-					  </div>
-					</form>
-				</div>*/
+				  displayErr2();
         	//alert("Correct Pin", "login.php");
         }
        	else {
-					/*<form action="confirm_pin.php" method="POST" class="modal-form">
-					  <div class="modal-content">
-					    <span id="close" class="close">&times;</span>
-					    <h2>Enter Pin</h2>
-					    <p4>
-				          Incorrect Pin Provided!
-				      </p4>
-					    <!--<input type="text" placeholder="Enter Email" name="email" id='email' required>-->
-					    <!--<label for="psw"><b>Pin</b></label>-->
-					    <!--<input type="password" placeholder="Enter Pin" name="psw" id='psw' required>-->
-					   <!-- <button type="submit" class="btn">Enter</button>-->
-					  </div>
-					</form>
-				</div>*/
+					displayErr3();
        		//alert("Incorrect Pin Provided!", "enter_pin.php");
        	}
     }
 } else {
-	/*<form action="confirm_pin.php" method="POST" class="modal-form">
-		<div class="modal-content">
-			<span id="close" class="close">&times;</span>
-			<h2>Enter Pin</h2>
-			<p4>
-				Account not found!
-			</p4>
-			<!--<input type="text" placeholder="Enter Email" name="email" id='email' required>-->
-			<!--<label for="psw"><b>Pin</b></label>-->
-			<!--<input type="password" placeholder="Enter Pin" name="psw" id='psw' required>-->
-		 <!-- <button type="submit" class="btn">Enter</button>-->
-		</div>
-	</form>
-</div>*/
+	  displayErr4();
 		//alert("Account not found!", 'login.php');
 }
 
@@ -135,8 +96,105 @@ function displayErr1() {
 	echo '}';
 	echo '}';
 	echo '</script>';
+}
+
+function displayErr2() {
+	echo '<div id="myModal2" class="modal">';
+	echo '<form method="POST" class="modal-form">';
+	echo '<div class="modal-content">';
+	echo '<span id="close" class="close">&times;</span>';
+	echo '<h2>Enter Pin</h2>';
+	echo '<p4>';
+	echo 'Correct Pin';
+	echo '</p4>';
+	echo '</div>';
+	echo '</form>';
+	echo '</div>';
+
+	echo '<script type="text/javascript">';
+	echo 'function displayErr2() {';
+	echo "var modal = document.getElementById('myModal2');";
+	echo "modal.style.display = 'block';";
+	echo '}';
+	echo 'var modal = document.getElementById("myModal2");';
+	echo 'var close = document.getElementById("close");';
+	echo 'console.log(modal);';
+	echo 'window.onclick = function(event) {';
+	echo 'if (event.target == modal) {';
+	echo 'window.location = "enter_pin.php";';
+	echo '}';
+	echo 'else if (event.target == close) {';
+	echo 'window.location = "enter_pin.php";';
+	echo '}';
+	echo '}';
+	echo '</script>';
+}
 
 
+function displayErr3() {
+	echo '<div id="myModal3" class="modal">';
+	echo '<form method="POST" class="modal-form">';
+	echo '<div class="modal-content">';
+	echo '<span id="close" class="close">&times;</span>';
+	echo '<h2>Enter Pin</h2>';
+	echo '<p4>';
+	echo 'Incorrect Pin Provided!';
+	echo '</p4>';
+	echo '</div>';
+	echo '</form>';
+	echo '</div>';
+
+	echo '<script type="text/javascript">';
+	echo 'function displayErr3() {';
+	echo "var modal = document.getElementById('myModal3');";
+	echo "modal.style.display = 'block';";
+	echo '}';
+	echo 'var modal = document.getElementById("myModal3");';
+	echo 'var close = document.getElementById("close");';
+	echo 'console.log(modal);';
+	echo 'window.onclick = function(event) {';
+	echo 'if (event.target == modal) {';
+	echo 'window.location = "enter_pin.php";';
+	echo '}';
+	echo 'else if (event.target == close) {';
+	echo 'window.location = "enter_pin.php";';
+	echo '}';
+	echo '}';
+	echo '</script>';
+}
+
+
+
+function displayErr4() {
+	echo '<div id="myModal4" class="modal">';
+	echo '<form method="POST" class="modal-form">';
+	echo '<div class="modal-content">';
+	echo '<span id="close" class="close">&times;</span>';
+	echo '<h2>Enter Pin</h2>';
+	echo '<p4>';
+	echo 'Account not found!';
+	echo '</p4>';
+	echo '</div>';
+	echo '</form>';
+	echo '</div>';
+
+	echo '<script type="text/javascript">';
+	echo 'function displayErr4() {';
+	echo "var modal = document.getElementById('myModal4');";
+	echo "modal.style.display = 'block';";
+	echo '}';
+	echo 'var modal = document.getElementById("myModal4");';
+	echo 'var close = document.getElementById("close");';
+	echo 'console.log(modal);';
+	echo 'window.onclick = function(event) {';
+	echo 'if (event.target == modal) {';
+	echo 'window.location = "enter_pin.php";';
+	echo '}';
+	echo 'else if (event.target == close) {';
+	echo 'window.location = "enter_pin.php";';
+	echo '}';
+	echo '}';
+	echo '</script>';
 }
 
 
