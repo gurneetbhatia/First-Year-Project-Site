@@ -107,7 +107,7 @@ $password = "NL70C8aGk7";
 $database = "6s7vM7E9Nh";
 
 $userid = $_GET['userid'];
-$sessionid = $_GET['sessionid']);
+$sessionid = $_GET['sessionid'];
 $sql = "SELECT SessionID FROM 'Session' WHERE SessionID=$sessionid AND UserID=$userid";
 
 function alert($msg)
