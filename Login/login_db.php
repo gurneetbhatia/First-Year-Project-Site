@@ -25,7 +25,21 @@ if($result->num_rows > 0) {
 		if (empty($row['Pin'])) {
 			if (password_verify($passwd, $row['Password'])) {
 				// password is correct and the email has been verified
-				changePage("../startbootstrap-heroic-features-gh-pages/home.php");// change this to home page
+				// create a session id for this user
+				$sessionid = rand(10000, 99999);
+				$sql = "SELECT `SessionID` FROM `Session` WHERE `SessionID`=$sessionid";
+				$result = doSQL($conn, $sql, true);
+				if ($result->num_rows > 0) {
+					$sessionid = rand(10000, 99999);
+					$sql = "SELECT `SessionID` FROM `Session` WHERE `SessionID`=$sessionid";
+					$result = doSql($conn, $sql, false);
+				}
+				$userid = $row['UserID'];
+				$sql = "INSERT INTO `Session`(`SessionID`, `UserID`) VALUES ($sessionid, $userid)";
+				$GLOBALS['userid'] = $userid;
+				$GLOBALS['sessionid'] = $sessionid;
+				doSQL($conn, $sql, true);
+				changePage("../startbootstrap-heroic-features-gh-pages/home.php?userid=$userid&sessionid=$sessionid");// change this to home page
 			}
 			else {
 				alert('Incorrect Password!');

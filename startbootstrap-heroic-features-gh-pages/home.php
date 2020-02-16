@@ -98,3 +98,38 @@
 </body>
 
 </html>
+
+<?php
+
+$servername = "remotemysql.com:3306";
+$username = "6s7vM7E9Nh";
+$password = "NL70C8aGk7";
+$database = "6s7vM7E9Nh";
+
+$userid = $_GET['userid'];
+$sessionid = $_GET['sessionid']);
+$sql = "SELECT SessionID FROM 'Session' WHERE SessionID=$sessionid AND UserID=$userid";
+
+function alert($msg)
+{
+  echo "<script type='text/javascript'>";
+  echo "alert('$msg');";
+  echo "</script>";
+}
+
+function doSQL($conn, $sql, $testMsgs)
+{
+  if($testMsgs)
+  {
+    echo ("<br><code>SQL: $sql</code>");
+    if ($result = $conn->query($sql))
+      echo ("<code> - OK </code>");
+    else
+      echo ("<code> - FAIL! " . $conn->error . " </code>");
+  }
+  else
+    $result = $conn->query($sql);
+  return $result;
+}
+
+?>
