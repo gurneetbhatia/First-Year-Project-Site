@@ -1,6 +1,11 @@
 
 /* Dropdown Button */
 
+body {
+ background-image: url("imagetry5.jpg");
+ background-color: #cccccc;
+}
+
 footer {
   position: fixed;
   bottom: 0;
