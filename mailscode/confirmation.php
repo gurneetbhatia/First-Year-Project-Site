@@ -2,6 +2,7 @@
 
 require '../vendor/autoload.php';
 use Mailgun\Mailgun;
+use Mailgun\HttpClient\HttpClientConfigurator;
 $mailgunC = new Mailgun('b27d88a95403dec1ae7c41d620df9603-52b6835e-819d5378');
 
 //$key = '';
