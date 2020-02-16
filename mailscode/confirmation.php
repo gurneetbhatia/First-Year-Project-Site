@@ -1,16 +1,16 @@
 <?php
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 use Mailgun\Mailgun;
 $mailgunC = new Mailgun('b27d88a95403dec1ae7c41d620df9603-52b6835e-819d5378');
 
-$key = '';
+//$key = '';
 $domain = "sandbox91a3c6061d6446f29f6c12f2a968d4a0.mailgun.org";
 
 $email = $_GET['email'];
 $pin = $_GET['pin'];
 
-$Option[FROM_WB]= "user.service.whiteboard@gmail.com";
+$Option[FROM_WB]= "user.service.whiteboard@sandbox91a3c6061d6446f29f6c12f2a968d4a0.mailgun.org";
 $Option[TO_USER]= $email;
 $Option[USER_MAIL]= $email;
 $Option[SUBJECT]= "Registration confirmation";
@@ -43,3 +43,4 @@ function changePage($newpage) {
 }
 
  ?>
+
