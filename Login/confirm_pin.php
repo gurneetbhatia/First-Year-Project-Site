@@ -22,21 +22,77 @@ if ($result->num_rows > 0) {
     // output data of each row
     if($row = $result->fetch_assoc()) {
     	if (empty($row['Pin'])) {
-	    	alert("Email already verified!", "login.php");
+				<form action="confirm_pin.php" method="POST" class="modal-form">
+				  <div class="modal-content">
+				    <span id="close" class="close">&times;</span>
+				    <h2>Enter Pin</h2>
+				    <p4>
+			           Email already verified!
+			      </p4>
+				    <!--<input type="text" placeholder="Enter Email" name="email" id='email' required>-->
+				    <!--<label for="psw"><b>Pin</b></label>-->
+				    <!--<input type="password" placeholder="Enter Pin" name="psw" id='psw' required>-->
+				   <!-- <button type="submit" class="btn">Enter</button>-->
+				  </div>
+				</form>
+			</div>
+	    	//alert("Email already verified!", "login.php");
 	    }
         elseif ($pin === $row['Pin']) {
         	// pin provided is correct
         	$userid = $row['UserID'];
         	$sql = "UPDATE `User` SET `Pin`=NULL WHERE UserID=$userid";
         	doSQL($conn, $sql, true);
-        	alert("Correct Pin", "login.php");
+					<form action="confirm_pin.php" method="POST" class="modal-form">
+					  <div class="modal-content">
+					    <span id="close" class="close">&times;</span>
+					    <h2>Enter Pin</h2>
+					    <p4>
+				           Correct Pin
+				      </p4>
+					    <!--<input type="text" placeholder="Enter Email" name="email" id='email' required>-->
+					    <!--<label for="psw"><b>Pin</b></label>-->
+					    <!--<input type="password" placeholder="Enter Pin" name="psw" id='psw' required>-->
+					   <!-- <button type="submit" class="btn">Enter</button>-->
+					  </div>
+					</form>
+				</div>
+        	//alert("Correct Pin", "login.php");
         }
        	else {
-       		alert("Incorrect Pin Provided!", "enter_pin.php");
+					<form action="confirm_pin.php" method="POST" class="modal-form">
+					  <div class="modal-content">
+					    <span id="close" class="close">&times;</span>
+					    <h2>Enter Pin</h2>
+					    <p4>
+				          Incorrect Pin Provided!
+				      </p4>
+					    <!--<input type="text" placeholder="Enter Email" name="email" id='email' required>-->
+					    <!--<label for="psw"><b>Pin</b></label>-->
+					    <!--<input type="password" placeholder="Enter Pin" name="psw" id='psw' required>-->
+					   <!-- <button type="submit" class="btn">Enter</button>-->
+					  </div>
+					</form>
+				</div>
+       		//alert("Incorrect Pin Provided!", "enter_pin.php");
        	}
     }
 } else {
-    alert("Account not found!", 'login.php');
+	<form action="confirm_pin.php" method="POST" class="modal-form">
+		<div class="modal-content">
+			<span id="close" class="close">&times;</span>
+			<h2>Enter Pin</h2>
+			<p4>
+				Account not found!
+			</p4>
+			<!--<input type="text" placeholder="Enter Email" name="email" id='email' required>-->
+			<!--<label for="psw"><b>Pin</b></label>-->
+			<!--<input type="password" placeholder="Enter Pin" name="psw" id='psw' required>-->
+		 <!-- <button type="submit" class="btn">Enter</button>-->
+		</div>
+	</form>
+</div>
+		//alert("Account not found!", 'login.php');
 }
 
 function doSQL($conn, $sql, $testMsgs)
