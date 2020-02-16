@@ -110,7 +110,7 @@ function displayErr2() {
 	echo '</div>';
 	echo '</form>';
 	echo '</div>';
-
+        
 	echo '<script type="text/javascript">';
 	echo 'function displayErr2() {';
 	echo "var modal = document.getElementById('myModal2');";
