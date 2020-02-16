@@ -2,9 +2,9 @@
 
 require 'vendor/autoload.php';
 use Mailgun\Mailgun;
-$mailgunC = new Mailgun::create('b27d88a95403dec1ae7c41d620df9603-52b6835e-819d5378');
+$mailgunC = new Mailgun('b27d88a95403dec1ae7c41d620df9603-52b6835e-819d5378');
 
-$key = '';
+//$key = '';
 $domain = "sandbox91a3c6061d6446f29f6c12f2a968d4a0.mailgun.org";
 
 $Option[FROM_WB]= "user.service.whiteboard@gmail.com";
