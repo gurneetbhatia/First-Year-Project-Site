@@ -1,41 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
 <h1>Settings</h1>
+
 <ul class="nav navbar-nav navbar-centered">
    <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown"
            role="button" aria-haspopup="true" aria-expanded="false">
            My Account<span class="caret"></span></a>
+           <br>
           <ul class="dropdown-menu">
-            <li><a href="#">Privacy and Security</a></li>
-            <li><a href="#">Change User Name</a></li>
-            <li><a href="#">Change Password</a></li>
+            <li>Privacy</li>
+            <br>
+            <form action="/action_page.php">
+
+              <input type="checkbox" id="hide" name="hide" value = "Hide">
+              <label for="hide"> Hide my username</label><br>
+
+            </form>
+            <br>
+            <li>Change User Name</li>
+            <br>
+            <form>
+           <label for="newname">New Username:</label><br>
+           <input type="text" id="newname" name="newname"><br>
+           </form>
+           <br>
+            <li>Change Password</li>
+            <br>
+            <form>
+              <label for="oldpw">Old Password:</label><br>
+              <input type="text" id="oldpw" name="oldpw"><br>
+              <label for="newpw">New Password:</label><br>
+              <input type="text" id="newpw" name="newpw"><br>
+              <label for="confrimpw">Confirm Password:</label><br>
+              <input type="text" id="confirmpw" name="confrimpw"><br>
+
+            </form>
+            <br>
           </ul>
         </li>
-    <li class="dropdown">
-           <a class="dropdown-toggle" data-toggle="dropdown"
-              role="button" aria-haspopup="true" aria-expanded="false">
-                Notifications<span class="caret"></span></a>
-           <ul class="dropdown-menu">
-              <li><a href="#">Enable Email Notifications</a></li>
-           </ul>
-        </li>
-   <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown"
-           role="button" aria-haspopup="true" aria-expanded="false">
-           General<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Enable Google Calender</a></li>
-            <li><a href="#">Enable Google Map</a></li>
-          </ul>
-        </li>
+      <ul class="dropdown-menu">
+        <li>Notifications</li>
+        <br>
+        <form action="/action_page.php">
+          <input type="checkbox" id="disable1" name="disable1" value="Disable1">
+          <label for="disable1"> disable Email notifications</label><br>
+
+          </form>
+          <br>
+     </ul>
+
+     <ul class="dropdown-menu">
+       <li>General</li>
+       <br>
+       <form action="/action_page.php">
+         <input type="checkbox" id="disable2" name="disable2" value="Disable2">
+         <label for="disable2"> disable Google Calendar</label><br>
+         <input type="checkbox" id="disable3" name="disable3" value="Disable3">
+         <label for="disable3"> disable Google Maps</label><br>
+
+         </form>
+         <br>
+    </ul>
+
+    <ul class="dropdown-menu">
+      <li>Deactive Account</li>
+      <br>
+      <form action="/action_page.php">
+        <input type="checkbox" id="confirm" name="confirm" value="Confirm">
+        <label for="confirm"> Confirm deletion</label><br>
+
+        </form>
+        <br>
+   </ul>
+
    <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown"
            role="button" aria-haspopup="true" aria-expanded="false">
            About<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="file:///home/h28219zy/GitRepos/first_group_project/Settings/policy.html">Privacy Policy</a></li>
             <li><a href="#">Terms of Use</a></li>
             <li><a href="#">Open-Source Libraries</a></li>
           </ul>
 
       </ul>
+
+      <button type="button"> Done </button>
+
+
 </div>

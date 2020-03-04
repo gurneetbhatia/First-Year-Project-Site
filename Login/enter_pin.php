@@ -6,6 +6,9 @@ include('login.php');
 
 ?>
 
+<!-- Trigger/Open The Modal -->
+
+<!-- The Modal -->
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -34,4 +37,4 @@ include('login.php');
 			window.location = "login.php";
 		}
 	}
-</script>>
+</script>

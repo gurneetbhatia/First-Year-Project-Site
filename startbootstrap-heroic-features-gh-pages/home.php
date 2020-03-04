@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="csshome1.css">
   <link rel="stylesheet" href="stylesheet1.css">
 
+
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
 
@@ -107,7 +108,11 @@ $password = "NL70C8aGk7";
 $database = "6s7vM7E9Nh";
 
 $userid = $_GET['userid'];
+<<<<<<< HEAD
 $sessionid = $_GET['sessionid']);
+=======
+$sessionid = $_GET['sessionid'];
+>>>>>>> 91625772e1e42a1bee629e8ee6a4c99bf742123f
 $sql = "SELECT SessionID FROM 'Session' WHERE SessionID=$sessionid AND UserID=$userid";
 
 function alert($msg)

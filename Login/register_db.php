@@ -44,12 +44,13 @@ else {
 	//$date = date('Y-m-d H:i:s');
 	$sql = "INSERT INTO User (Name, Email, Pin, Password, UserID) VALUES ('$name', '$email', '$pin', '$password', '$userid');";
 	doSQL($conn, $sql, false);
-	getPin();
+	changePage("../mailscode/confirmation.php?email=$emailid&pin=$pin");
+	//changePage("enter_pin.php");
 }
 
-function getPin() {
+function changePage($newpage) {
 	echo "<script type='text/javascript'>";
-	echo "window.location.href = 'enter_pin.php';";
+	echo "window.location.href = '$newpage';";
 	echo "</script>";
 }
 
