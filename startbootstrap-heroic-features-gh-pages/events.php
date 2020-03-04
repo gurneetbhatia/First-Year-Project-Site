@@ -120,19 +120,19 @@
 
 
 
-            <form>
+            <form method="POST" action="events_db.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>">
               <div class="form-group">
-                <label for="titleText">Title*:</label>
-                <input type="text" class="form-control" id="titleText" required>
+                <label for="titleText">Title:</label>
+                <input type="text" class="form-control" name='titleText' id="titleText" required>
               </div>
 
               <div class="form-group">
                 <label for="descriptionText">Description:</label>
-                <textarea class="form-control" id="descriptionText" rows="3"></textarea>
+                <textarea class="form-control" name="descriptionText" id="descriptionText" rows="3"></textarea>
               </div>
 
               <div class="form-group">
-                <label for="date">Date*:</label>
+                <label for="date">Date:</label>
                 <input type="date" id="date" name="date"  required>
               </div>
 
@@ -142,12 +142,12 @@
               </div>
 
               <div class="form-group">
-                <label for="titleText">Location*:</label>
-                <input type="text" class="form-control" id="titleText"  required>
+                <label for="location">Location:</label>
+                <input type="text" class="form-control" name="location" id="location"  required>
               </div>
 
               <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="notificationCheck">
+                <input type="checkbox" class="form-check-input" name="notificationCheck" id="notificationCheck">
                 <label class="form-check-label" for="notificationCheck">Enable notifications for this event</label>
               </div>
               <div class="modal-footer">

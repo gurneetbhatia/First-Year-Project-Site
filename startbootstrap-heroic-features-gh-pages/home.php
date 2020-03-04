@@ -27,7 +27,7 @@
 
 
 <div class="content">
-  <div id="events">
+  <div id="events" onclick="document.location.href='events.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'">
     <p >Events</p>
   </div>
   </div>
@@ -108,11 +108,8 @@ $password = "NL70C8aGk7";
 $database = "6s7vM7E9Nh";
 
 $userid = $_GET['userid'];
-<<<<<<< HEAD
-$sessionid = $_GET['sessionid']);
-=======
 $sessionid = $_GET['sessionid'];
->>>>>>> 91625772e1e42a1bee629e8ee6a4c99bf742123f
+
 $sql = "SELECT SessionID FROM 'Session' WHERE SessionID=$sessionid AND UserID=$userid";
 
 function alert($msg)
