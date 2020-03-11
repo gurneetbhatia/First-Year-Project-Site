@@ -61,7 +61,10 @@
         <a href="#"><i class="fa fa-fw fa-users"></i> Teams</a>
         <a href="#"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
         <a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        <a href="#"><i class="fa fa-fw fa-gears"></i></a>
+        <button class="dropbtn">
+      <a1 href="#"><i class="fa fa-fw fa-gears"></i></a1>
+    </button>
+
       </div>
     </div>
   </nav>
