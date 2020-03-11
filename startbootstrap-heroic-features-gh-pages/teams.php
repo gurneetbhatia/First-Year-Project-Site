@@ -8,14 +8,15 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Heroic Features - Start Bootstrap Template</title>
+  <title>Whiteboard - Teams</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css1.css">
   <link rel="stylesheet" href="dropdown.css">
   <link rel="stylesheet" href="button.css">
+  <link rel="stylesheet" href="sidenav.css">
+  <link rel="stylesheet" href="cssteam.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -37,20 +38,29 @@
       </button>
       <div class="navbar">
         <a href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
-        <a1 href="events.php"><i class="fa fa-fw fa-calendar"></i> Events</a1>
-        <a href="teams.php"><i class="fa fa-fw fa-users"></i> Teams</a>
+        <a href="events.php"><i class="fa fa-fw fa-calendar"></i> Events</a>
+        <a1 href="teams.php"><i class="fa fa-fw fa-users"></i> Teams</a1>
         <a href="notes.php"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
         <a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
       </div>
     </div>
   </nav>
 
-
+  <div id="settingsnav" class="settings">
+   <a href="#" id="account">Account</a>
+   <a href="#" id="privacy">Privacy</a>
+   <a href="#" id="about">About</a>
+  </div>
 
 
     <!-- Teams -->
     <div class="content">
-      <button type="button" class="btnEvent" data-toggle="modal" data-target=".bd-example-modal-lg">
+      <button type="button" class="btnEvent" data-toggle="modal" data-target="#newTeam">
+        New Team
+      </button>
+    </div>
+    <!--<div class="content">
+      <button type="button" class="btnTeam1" data-toggle="modal" data-target="#exampleModalCenter">
         Team 1
       </button>
     </div>
@@ -63,12 +73,55 @@
       <button type="button" class="btnTeam3" data-toggle="modal" data-target="#exampleModalCenter">
         Team 3
       </button>
-    </div>
-    <div class="content">
-      <button type="button" class="btnTeam3" data-toggle="modal" data-target="#newTeam">
-        Create New Team
-      </button>
-    </div>
+    </div>-->
+
+<?php
+
+$servername = "remotemysql.com:3306";
+$username = "6s7vM7E9Nh";
+$password = "NL70C8aGk7";
+$database = "6s7vM7E9Nh";
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+if(!$conn)
+{
+  die("Connection failed " . mysqli_connect_error());
+}
+echo "Connected Successfully";
+
+$sql = "SELECT * FROM `Team`";
+$result = doSql($conn, $sql, false);
+
+while ($row = mysqli_fetch_row($result)) {
+    createButtonForTeam($row[0]);
+}
+
+function createButtonForTeam($teamname) {
+
+    echo "<div class='content'>";
+    echo "<button type='button' class='teamBtn' data-toggle='modal' data-target='#exampleModalCenter'>";
+    echo "$teamname";
+    echo "</button>";
+    echo "</div>";
+
+}
+
+function doSQL($conn, $sql, $testMsgs)
+{
+  if($testMsgs)
+  {
+    echo ("<br><code>SQL: $sql</code>");
+    if ($result = $conn->query($sql))
+      echo ("<code> - OK </code>");
+    else
+      echo ("<code> - FAIL! " . $conn->error . " </code>");
+  }
+  else
+    $result = $conn->query($sql);
+  return $result;
+}
+
+?>
 
 
 
@@ -87,7 +140,7 @@
           <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="titleText">Title*:</label>
+                  <label for="titleText">Title:</label>
                   <input type="text" class="form-control" id="titleText" required>
                 </div>
 
@@ -250,15 +303,20 @@
             </button>
           </div>
           <div class="modal-body">
-                <form>
+                <form method="POST" action='create_team.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'>
                   <div class="form-group">
-                    <label for="titleText">Team Name*:</label>
-                    <input type="text" class="form-control" id="titleText" required>
+                    <label for="titleText">Team Name:</label>
+                    <input type="text" class="form-control" name="titleText" id="titleText" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="desText">Description:</label>
+                    <input type="text" class="form-control" name="desText" id="desText">
                   </div>
 
                   <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="notificationCheck">
-                    <label class="form-check-label" for="notificationCheck">Enable anyone to add members</label>
+                    <input type="checkbox" class="form-check-input" name="publicCheck" id="publicCheck">
+                    <label class="form-check-label" for="publicCheck">Enable anyone to add members</label>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btnCancel" data-dismiss="modal">Cancel</button>

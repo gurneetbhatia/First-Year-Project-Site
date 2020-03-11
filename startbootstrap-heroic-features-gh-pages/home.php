@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="csshome.css">
   <link rel="stylesheet" href="csshome1.css">
   <link rel="stylesheet" href="stylesheet1.css">
-
+  <link rel="stylesheet" href="sidenav.css">
 
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
@@ -56,20 +56,21 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar">
-        <a1 href="#"><i class="fa fa-fw fa-home"></i> Home</a1>
-        <a href="#"><i class="fa fa-fw fa-calendar"></i> Events</a>
-        <a href="#"><i class="fa fa-fw fa-users"></i> Teams</a>
-        <a href="#"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
-        <a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        <button class="dropbtn">
-      <a1 href="#"><i class="fa fa-fw fa-gears"></i></a1>
-    </button>
-
+        <a1 href="home.php"><i class="fa fa-fw fa-home"></i> Home</a1>
+        <a href="events.php"><i class="fa fa-fw fa-calendar"></i> Events</a>
+        <a href="teams.php"><i class="fa fa-fw fa-users"></i> Teams</a>
+        <a href="notes.php"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
+        <a href=""><i class="fa fa-fw fa-sign-out"></i>Logout</a>
       </div>
     </div>
   </nav>
 
-
+  <div id="settingsnav" class="settings">
+   <a2 href="#" id="settings">Settings</a2>
+   <a href="#" id="account">Account</a>
+   <a href="#" id="privacy">Privacy</a>
+   <a href="#" id="about">About</a>
+  </div>
 
   <!-- Page Content -->
 
