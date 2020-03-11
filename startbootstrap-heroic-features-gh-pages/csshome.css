@@ -29,6 +29,7 @@ body {
  width: 100%;
  background-color: #343a40;
  overflow: auto;
+ padding-right: 100px;
 }
 
 

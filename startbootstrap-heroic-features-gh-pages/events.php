@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css1.css">
   <link rel="stylesheet" href="dropdown.css">
   <link rel="stylesheet" href="button.css">
-
+  <link rel="stylesheet" href="sidenav.css">
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
 
@@ -32,16 +32,20 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar">
-        <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-        <a1 href="#"><i class="fa fa-fw fa-calendar"></i> Events</a1>
-        <a href="#"><i class="fa fa-fw fa-users"></i> Teams</a>
-        <a href="#"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
+        <a href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a1 href="events.php"><i class="fa fa-fw fa-calendar"></i> Events</a1>
+        <a href="teams.php"><i class="fa fa-fw fa-users"></i> Teams</a>
+        <a href="notes.php"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
         <a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        <a href="#"><i class="fa fa-fw fa-gears"></i></a>
       </div>
     </div>
   </nav>
 
+  <div id="settingsnav" class="settings">
+   <a href="#" id="account">Account</a>
+   <a href="#" id="privacy">Privacy</a>
+   <a href="#" id="about">About</a>
+  </div>
   <!-- Page Content -->
   <div class="container">
     <ul>
@@ -166,7 +170,9 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark" style="padding-bottom: 10px;">
     <div class="container">
-
+      <p1>
+        WHITEBOARD<sup>©</sup>
+      </p1>
     </div>
     <!-- /.container -->
   </footer>

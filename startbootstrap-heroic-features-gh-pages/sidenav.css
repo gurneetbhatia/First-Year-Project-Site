@@ -1,7 +1,7 @@
 /* Style the links inside the sidenav */
 #settingsnav a {
   position: absolute;
-  left: -80px;
+  left: -90px;
   transition: 0.3s;
   padding: 15px;
   width: 100px;
@@ -12,12 +12,12 @@
 }
 
 #settingsnav a:hover {
-  left: 0; /* On mouse-over, make the elements appear as they should */
+  left: -10px; /* On mouse-over, make the elements appear as they should */
   background-color: rgb(102, 255, 102)
 
 }
 
-#settingsnav a1 {
+/*#settingsnav a2 {
   left: 0;
   position: absolute;
   transition: 0.3s;
@@ -31,12 +31,12 @@
   border: white;
   border-color: rgb(85, 182, 183);
   border-style: outset;
-}
+}*/
 
-#settings {
+/*#settings {
   top: 0px;
   background-color: #343a40;
-}
+}*/
 
 #account {
   top: 70px;

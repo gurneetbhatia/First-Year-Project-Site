@@ -13,9 +13,10 @@
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css1.css">
+  <link rel="stylesheet" href="cssteam.css">
   <link rel="stylesheet" href="dropdown.css">
   <link rel="stylesheet" href="button.css">
+  <link rel="stylesheet" href="sidenav.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -36,17 +37,20 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="navbar">
-        <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-        <a1 href="#"><i class="fa fa-fw fa-calendar"></i> Events</a1>
-        <a href="#"><i class="fa fa-fw fa-users"></i> Teams</a>
-        <a href="#"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
+        <a href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
+        <a href="events.php"><i class="fa fa-fw fa-calendar"></i> Events</a>
+        <a1 href="teams.php"><i class="fa fa-fw fa-users"></i> Teams</a1>
+        <a href="notes.php"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
         <a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        <a href="#"><i class="fa fa-fw fa-gears"></i></a>
       </div>
     </div>
   </nav>
 
-
+  <div id="settingsnav" class="settings">
+   <a href="#" id="account">Account</a>
+   <a href="#" id="privacy">Privacy</a>
+   <a href="#" id="about">About</a>
+  </div>
 
 
     <!-- Teams -->
