@@ -38,7 +38,7 @@ $sql = "INSERT INTO `Team`(`Name`, `Description`, `TeamID`, `Privacy`) VALUES ('
 doSql($conn, $sql, true);
 $sessionid = $_GET['sessionid'];
 $userid = $_GET['userid'];
-//changePage("teams.php?sessionid=$sessionid&userid=$userid");
+changePage("teams.php?sessionid=$sessionid&userid=$userid");
 
 function changePage($newpage) {
 	echo "<script type='text/javascript'>";

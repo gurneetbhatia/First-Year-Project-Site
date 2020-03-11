@@ -13,10 +13,10 @@
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="cssteam.css">
   <link rel="stylesheet" href="dropdown.css">
   <link rel="stylesheet" href="button.css">
   <link rel="stylesheet" href="sidenav.css">
+  <link rel="stylesheet" href="cssteam.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -59,7 +59,7 @@
         New Team
       </button>
     </div>
-    <div class="content">
+    <!--<div class="content">
       <button type="button" class="btnTeam1" data-toggle="modal" data-target="#exampleModalCenter">
         Team 1
       </button>
@@ -73,7 +73,55 @@
       <button type="button" class="btnTeam3" data-toggle="modal" data-target="#exampleModalCenter">
         Team 3
       </button>
-    </div>
+    </div>-->
+
+<?php
+
+$servername = "remotemysql.com:3306";
+$username = "6s7vM7E9Nh";
+$password = "NL70C8aGk7";
+$database = "6s7vM7E9Nh";
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+if(!$conn)
+{
+  die("Connection failed " . mysqli_connect_error());
+}
+echo "Connected Successfully";
+
+$sql = "SELECT * FROM `Team`";
+$result = doSql($conn, $sql, false);
+
+while ($row = mysqli_fetch_row($result)) {
+    createButtonForTeam($row[0]);
+}
+
+function createButtonForTeam($teamname) {
+
+    echo "<div class='content'>";
+    echo "<button type='button' class='teamBtn' data-toggle='modal' data-target='#exampleModalCenter'>";
+    echo "$teamname";
+    echo "</button>";
+    echo "</div>";
+
+}
+
+function doSQL($conn, $sql, $testMsgs)
+{
+  if($testMsgs)
+  {
+    echo ("<br><code>SQL: $sql</code>");
+    if ($result = $conn->query($sql))
+      echo ("<code> - OK </code>");
+    else
+      echo ("<code> - FAIL! " . $conn->error . " </code>");
+  }
+  else
+    $result = $conn->query($sql);
+  return $result;
+}
+
+?>
 
 
 
@@ -92,7 +140,7 @@
           <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="titleText">Title*:</label>
+                  <label for="titleText">Title:</label>
                   <input type="text" class="form-control" id="titleText" required>
                 </div>
 
