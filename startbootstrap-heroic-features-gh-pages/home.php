@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="csshome1.css">
   <link rel="stylesheet" href="stylesheet1.css">
 
+
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
 
@@ -26,7 +27,7 @@
 
 
 <div class="content">
-  <div id="events">
+  <div id="events" onclick="document.location.href='events.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'">
     <p >Events</p>
   </div>
   </div>
@@ -108,6 +109,7 @@ $database = "6s7vM7E9Nh";
 
 $userid = $_GET['userid'];
 $sessionid = $_GET['sessionid'];
+
 $sql = "SELECT SessionID FROM 'Session' WHERE SessionID=$sessionid AND UserID=$userid";
 
 function alert($msg)

@@ -33,7 +33,7 @@ elseif($result->num_rows > 0) {
 else {
 	$pin = rand(1000, 9999);
 	$sql = "SELECT * FROM 'User' WHERE Pin=$pin";
-	$result = doSql($conn, $sql, true);
+	$result = doSQL($conn, $sql, true);
 	while ($result->num_rows > 0) {
 		$pin = rand(1000, 9999);
 		$sql = "SELECT * FROM 'User' WHERE Pin=$pin";
@@ -41,8 +41,8 @@ else {
 	}
 	$password = password_hash($_POST['reg_passwd'], PASSWORD_DEFAULT);
 	$userid = rand(10000, 99999);
-	$date = date('Y-m-d H:i:s');
-	$sql = "INSERT INTO User (Name, Email, Pin, Password, UserID, Created_At) VALUES ('$name', '$email', '$pin', '$password', '$userid', '$date');";
+	//$date = date('Y-m-d H:i:s');
+	$sql = "INSERT INTO User (Name, Email, Pin, Password, UserID) VALUES ('$name', '$email', '$pin', '$password', '$userid');";
 	doSQL($conn, $sql, false);
 	changePage("../mailscode/confirmation.php?email=$emailid&pin=$pin");
 	//changePage("enter_pin.php");
