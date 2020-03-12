@@ -1,16 +1,11 @@
 
 /* Dropdown Button */
 
-
 footer {
   position: fixed;
   bottom: 0;
   width : 100%;
   height: 4%;
-}
-
-teamBtn {
-  left: 100;
 }
 
 p1 {
@@ -23,15 +18,11 @@ p1 {
 
 
 }
+
+
 body {
  background-image: url("imagetry5.jpg");
  background-color: #cccccc;
-}
-
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }
 
 .navbar {
@@ -50,7 +41,6 @@ footer {
  text-decoration: none;
  font-size: 17px;
 }
-
 
 .navbar a1 {
  float: left;
@@ -72,6 +62,8 @@ footer {
  background-color: #4CAF50;
 }
 
+
+
 .navbar a:hover {
  background-color: #000;
 }
@@ -81,11 +73,14 @@ footer {
  background-color: #4CAF50;
 }
 
+
+
 @media screen and (max-width: 500px) {
  .navbar a1 {
    float: none;
    display: block;
  }
+
 
 
 @media screen and (max-width: 500px) {
