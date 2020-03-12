@@ -99,7 +99,7 @@ while ($row = mysqli_fetch_row($result)) {
 function createButtonForTeam($teamname) {
 
     echo "<div class='content'>";
-    echo "<button type='button' class='teamBtn' data-toggle='modal' data-target='#exampleModalCenter'>";
+    echo "<button type='button' class='teamBtn' data-toggle='modal' data-target='#displayTeam'>";
     echo "$teamname";
     echo "</button>";
     echo "</div>";
@@ -122,61 +122,6 @@ function doSQL($conn, $sql, $testMsgs)
 }
 
 ?>
-
-
-
-
-
-    <!-- New Team Events Modal -->
-    <div id="newEvent" class="modal fade" role="dialog" style="width:1620px;">
-      <div class="modal-dialog">
-        <div class="modal-content" style="width:800px;">
-          <div class="modal-header">
-            <h3 class="modal-title" id="New team event">New Team Event</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="titleText">Title:</label>
-                  <input type="text" class="form-control" id="titleText" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="descriptionText">Description:</label>
-                  <textarea class="form-control" id="descriptionText" rows="3"></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="date">Date*:</label>
-                  <input type="date" id="date" name="date"  required>
-                </div>
-
-                <div class="form-group">
-                  <label for="appt">Time:</label>
-                  <input type="time" id="appt" name="appt">
-                </div>
-
-                <div class="form-group">
-                  <label for="titleText">Location*:</label>
-                  <input type="text" class="form-control" id="titleText"  required>
-                </div>
-
-                <div class="form-check">
-                  <input type="checkbox" class="form-check-input" id="notificationCheck">
-                  <label class="form-check-label" for="notificationCheck">Enable notifications for this event</label>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btnCancel" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg">Go back</button>
-                  <button type="submit" class="btnPrimary">Create Team Event</button>
-                </div>
-              </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- New Team Member Modal -->
     <div id="newMember" class="modal fade" role="dialog" style="width:1620px;">
@@ -207,7 +152,7 @@ function doSQL($conn, $sql, $testMsgs)
 
 
     <!-- Team Modal -->
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="displayTeam" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
