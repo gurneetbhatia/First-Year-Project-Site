@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var server = require('http').createServer(app);
-var io = require('../..')(server);
+var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
 server.listen(port, () => {
@@ -13,7 +13,6 @@ server.listen(port, () => {
 // Routing
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Chatroom
 
 var numUsers = 0;
 
@@ -32,7 +31,6 @@ io.on('connection', (socket) => {
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
     if (addedUser) return;
-
     // we store the username in the socket session for this client
     socket.username = username;
     ++numUsers;
@@ -73,4 +71,5 @@ io.on('connection', (socket) => {
       });
     }
   });
+  
 });
