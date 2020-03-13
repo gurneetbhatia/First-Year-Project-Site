@@ -49,7 +49,7 @@ ul {
 /* Login Page */
 
 .login.page {
-  background-color: #000;
+  background-color: #343a40;
 }
 
 .login.page .form {
@@ -95,7 +95,7 @@ ul {
 /* Font */
 
 .messages {
-  font-size: 150%;
+  font-size: 125%;
 }
 
 .inputMessage {
@@ -137,7 +137,8 @@ ul {
 /* Input */
 
 .inputMessage {
-  border: 10px solid #000;
+  background: #00000;
+  border: 10px solid rgb(85, 182, 183);
   bottom: 0;
   height: 60px;
   left: 0;
@@ -146,4 +147,22 @@ ul {
   position: absolute;
   right: 0;
   width: 100%;
+  opacity: 0.8;
 }
+
+.sendButton {
+  width: 15%;
+  background: rgb(85, 182, 183);
+  border: none;
+  padding: 10px;
+
+}
+
+/*   * { margin-left: 3%; margin-right: 3%; padding: 50; box-sizing: border-box; }
+    body { font: 13px Helvetica, Arial; }
+    form { background: #343a40; padding: 3px; position: fixed; bottom: 0; width: 50%; }
+    form input { border: 0; padding: 10px; width: 75%; margin-right: 0; }
+    form button { width: 15%; background: rgb(85, 182, 183); border: none; padding: 10px; }
+    #messages { list-style-type: none; margin: 0; padding: 10px; }
+      #messages li { padding: 5px 10px; width: 90%;}
+      #messages li:nth-child(odd) { background: #eee; text-align: right; */

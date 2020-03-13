@@ -2,9 +2,9 @@ $(function() {
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
-    '#e21400', '#91580f', '#f8a700', '#f78b00',
-    '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
-    '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
+    '#ffcc00', '#ff9933', '#cc0066', '#f78b00',
+    '#58dc00', '#00cccc', '#a8f07a', '#D8C090',
+    '#90D8A8', '#90D8CA', '64ACAA', '#A3D9D7'
   ];
 
   // Initialize variables
@@ -12,6 +12,7 @@ $(function() {
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
+  var $sendButton = $('.sendButton');
 
   var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
@@ -113,11 +114,7 @@ $(function() {
     });
   }
 
-  // Adds a message element to the messages and scrolls to the bottom
-  // el - The element to add as a message
-  // options.fade - If the element should fade-in (default = true)
-  // options.prepend - If the element should prepend
-  //   all other messages (default = false)
+
   const addMessageElement = (el, options) => {
     var $el = $(el);
 
@@ -265,7 +262,7 @@ $(function() {
   });
 
   socket.on('disconnect', () => {
-    log('you have been disconnected');
+    log('UhOh... you have been disconnected');
   });
 
   socket.on('reconnect', () => {
@@ -276,7 +273,7 @@ $(function() {
   });
 
   socket.on('reconnect_error', () => {
-    log('attempt to reconnect has failed');
+    log('UhOh... attempt to reconnect has failed');
   });
 
 });
