@@ -18,6 +18,8 @@ if(!$conn)
 
 <head>
 
+  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="index.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -142,7 +144,7 @@ function createButtonForTeam($teamname, $counter, $id) {
   }
 
       echo "<div class='content'>";
-      echo "<button type='button' class='teamBtn' data-toggle='modal' data-target='#team$counter'>";
+      echo "<button type='button' class='btnTeam' data-toggle='modal' data-target='#team$counter'>";
       echo "$teamname";
       echo "</button>";
       echo "</div>";
@@ -229,7 +231,7 @@ function createButtonForTeam($teamname, $counter, $id) {
 
     echo "<div class=\"modal-footer\">";
     #echo "<button type=\"button\" class=\"btnPrimary\">Chat</button>";
-    echo "<a href=\"index.html\"> Chat</a>";
+    echo "<a href=\"index.html\" target=\"_blank\"> Chat</a>";
     echo "<button type=\"button\" class=\"btnCancel\" data-dismiss=\"modal\">Cancel</button>";
     echo "<button type=\"button\" class=\"btnPrimary\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#newEvent\">";
     echo "+ Team Event";
