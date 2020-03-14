@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+
+$servername = "remotemysql.com:3306";
+$username = "6s7vM7E9Nh";
+$password = "NL70C8aGk7";
+$database = "6s7vM7E9Nh";
+
+$conn = mysqli_connect($servername, $username, $password, $database);
+if(!$conn)
+{
+  die("Connection failed " . mysqli_connect_error());
+}
+
+?>
+
 <head>
 
   <meta charset="utf-8">
@@ -52,6 +67,44 @@
    <a href="#" id="about">About</a>
   </div>
 
+  <!-- New Team Modal -->
+    <div id="newTeam" class="modal fade" role="dialog" style="width:1620px;">
+      <div class="modal-dialog">
+        <div class="modal-content" style="width:800px;">
+          <div class="modal-header">
+            <h3 class="modal-title" id="New team">New Team Event</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+                <form method="POST" action="create_team.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>">
+                  <div class="form-group">
+                    <label for="titleText">Team Name:</label>
+                    <input type="text" class="form-control" name="titleText" id="titleText" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="desText">Description:</label>
+                    <input type="text" class="form-control" name="desText" id="desText" required>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="publicCheck" id="publicCheck">
+                    <label class="form-check-label" for="publicCheck">Enable anyone to add members</label>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btnCancel" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btnPrimary">Create Team</button>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
 
     <!-- Teams -->
     <div class="content">
@@ -59,50 +112,235 @@
         New Team
       </button>
     </div>
-    <!--<div class="content">
-      <button type="button" class="btnTeam1" data-toggle="modal" data-target="#exampleModalCenter">
-        Team 1
-      </button>
-    </div>
-    <div class="content">
-      <button type="button" class="btnTeam2" data-toggle="modal" data-target="#exampleModalCenter">
-        Team 2
-      </button>
-    </div>
-    <div class="content">
-      <button type="button" class="btnTeam3" data-toggle="modal" data-target="#exampleModalCenter">
-        Team 3
-      </button>
-    </div>-->
+
 
 <?php
-
-$servername = "remotemysql.com:3306";
-$username = "6s7vM7E9Nh";
-$password = "NL70C8aGk7";
-$database = "6s7vM7E9Nh";
-
-$conn = mysqli_connect($servername, $username, $password, $database);
-if(!$conn)
-{
-  die("Connection failed " . mysqli_connect_error());
-}
-echo "Connected Successfully";
 
 $sql = "SELECT * FROM `Team`";
 $result = doSql($conn, $sql, false);
 
+$counter = 0;
 while ($row = mysqli_fetch_row($result)) {
-    createButtonForTeam($row[0]);
+    $counter += 1;
+    createButtonForTeam($row[0], $counter, $row[2]);
 }
 
-function createButtonForTeam($teamname) {
+function createButtonForTeam($teamname, $counter, $id) {
+    addTeamMember($id);
+    addTeamEvent($id);
+    createTeamEventModal($id);
 
-    echo "<div class='content'>";
-    echo "<button type='button' class='teamBtn' data-toggle='modal' data-target='#displayTeam'>";
-    echo "$teamname";
+    $servername = "remotemysql.com:3306";
+    $username = "6s7vM7E9Nh";
+    $password = "NL70C8aGk7";
+    $database = "6s7vM7E9Nh";
+
+  $conn = mysqli_connect($servername, $username, $password, $database);
+  if(!$conn)
+  {
+    die("Connection failed " . mysqli_connect_error());
+  }
+
+      echo "<div class='content'>";
+      echo "<button type='button' class='teamBtn' data-toggle='modal' data-target='#team$counter'>";
+      echo "$teamname";
+      echo "</button>";
+      echo "</div>";
+
+
+    echo "<div class='modal fade bd-example-modal-lg' id='team$counter' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'>";
+    echo "<div class=\"modal-dialog modal-lg\">";
+    echo "<div class=\"modal-content\">";
+    echo "<div class=\"modal-header\">";
+    echo "<h3 class=\"modal-title\" id=\"Team 1 title\">$teamname</h3>";
+    echo "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">";
+    echo "<span aria-hidden=\"true\">&times;</span>";
     echo "</button>";
     echo "</div>";
+    echo "<div class=\"modal-body\">";
+    echo "<h5> Members </h5>";
+    echo "<div class=\"w3-container\">";
+    echo "<ul class=\"w3-ul w3-card-4\">";
+
+
+    $sql = "SELECT `UserID` FROM `TeamMembership` WHERE `TeamID`='$id'";
+    $result = doSQL($conn, $sql, false);
+    while($row = mysqli_fetch_row($result)) {
+      $sql1 = "SELECT * FROM `User` WHERE `UserID`='$row[0]'";
+      $result1 = doSQL($conn, $sql1, false);
+      $name = mysqli_fetch_row($result1)[0];
+
+      echo "<li class=\"w3-bar\">";
+      echo '<span onclick="message" class="">✉</span>';
+      echo '<img src="user-512.png" class="" style="width:30px">';
+      echo '<div class="w3-bar-item">';
+      echo "<span class=\"w3-large\">$name</span><br>";
+      echo '</div>';
+      echo '</li>';
+    }
+    echo "</ul>";
+    echo "</div>";
+
+    echo '<table class="table">';
+    echo '<thead class="thead-dark">';
+    echo '<tr>';
+    echo '<th class="column" scope="col" margin-top: 5px;>#</th>';
+    echo '<th scope="col">Title</th>';
+    echo '<th scope="col">Time</th>';
+    echo '<th scope="col">Location</th>';
+    echo '</tr>';
+    echo '</thead>';
+    echo '<tbody>';
+
+    $sql = "SELECT * FROM `Event`";
+    $result = doSQL($conn, $sql, true);
+    $sql1 = "SELECT `UserID` FROM `TeamMembership` WHERE `TeamID`='$id'";
+    $result1 = doSQL($conn, $sql1, true);
+    $rows = [];
+    while($row = mysqli_fetch_array($result1))
+    {
+        //echo "here " . $id . $row[0];
+        $rows[] = $row[0];
+    }
+    $counter = 0;
+    while($row = mysqli_fetch_row($result)) {
+      //echo array_values($rows[0]);
+      if(in_array($row[6], $rows)) {
+        $counter += 1;
+        echo '<tr>';
+        echo '<th scope="row">';
+        echo $counter;
+        echo "</th>";
+        echo '<td>';
+        echo $row[1];
+        echo '</td>';
+        echo '<td>';
+        echo $row[2];
+        echo '</td>';
+        echo '<td>';
+        echo $row[3];
+        echo '</td>';
+        echo '</tr>';
+      }
+    }
+
+    echo "</tbody>";
+    echo "</table>";
+
+    echo "<div class=\"modal-footer\">";
+    echo "<button type=\"button\" class=\"btnMessage\" action="">Chat</button>";
+    echo "<button type=\"button\" class=\"btnCancel\" data-dismiss=\"modal\">Cancel</button>";
+    echo "<button type=\"button\" class=\"btnPrimary\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#newEvent\">";
+    echo "+ Team Event";
+    echo "</button>";
+    echo "<button type=\"button\" class=\"btnPrimary\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#newMember\">";
+    echo "+ Team Member";
+    echo "</button>";
+    echo "</div>";
+
+
+
+    /*<li class="w3-bar">
+                    <span onclick="message" class="">✉</span>
+                    <img src="user-512.png" class="" style="width:30px">
+                    <div class="w3-bar-item">
+                      <span class="w3-large">Aissata</span><br>
+                    </div>
+                  </li>*/
+
+}
+
+function addTeamEvent($id) {
+
+}
+
+function createTeamEventModal($id) {
+  $ownerid = $_GET['userid'];
+echo '<div class="modal fade" id="newEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">';
+echo '<div class="modal-dialog modal-dialog-centered" role="document">';
+echo '';
+echo '';
+echo '<div class="modal-content">';
+echo '<div class="modal-header">';
+echo '<h5 class="modal-title" id="exampleModalLongTitle">New Team Event</h5>';
+echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+echo '<span aria-hidden="true">&times;</span>';
+echo '</button>';
+echo '</div>';
+echo '<div class="modal-body">';
+echo '';
+echo '';
+echo '';
+echo '';
+echo "<form method='POST' action='team_create_event.php?teamid=" . $id . "&ownerid=" . $ownerid . "'>";
+echo '<div class="form-group">';
+echo '<label for="titleText">Title:</label>';
+echo '<input type="text" class="form-control" name=\'titleText\' id="titleText" required>';
+echo '</div>';
+echo '';
+echo '<div class="form-group">';
+echo '<label for="descriptionText">Description:</label>';
+echo '<textarea class="form-control" name="descriptionText" id="descriptionText" rows="3"></textarea>';
+echo '</div>';
+echo '';
+echo '<div class="form-group">';
+echo '<label for="date">Date:</label>';
+echo '<input type="date" id="date" name="date"  required>';
+echo '</div>';
+echo '';
+echo '<div class="form-group">';
+echo '<label for="appt">Time:</label>';
+echo '<input type="time" id="appt" name="appt">';
+echo '</div>';
+echo '';
+echo '<div class="form-group">';
+echo '<label for="location">Location:</label>';
+echo '<input type="text" class="form-control" name="location" id="location"  required>';
+echo '</div>';
+echo '';
+echo '<button type="chat" class="message"></button>';
+echo '<div class="form-check">';
+echo '<input type="checkbox" class="form-check-input" name="notificationCheck" id="notificationCheck">';
+echo '<label class="form-check-label" for="notificationCheck">Enable notifications for this event</label>';
+echo '</div>';
+echo '<div class="modal-footer">';
+echo '<button type="button" class="btnCancel" data-dismiss="modal">Cancel</button>';
+echo '<button type="submit" class="btnPrimary">Create</button>';
+echo '</div>';
+echo '</form>';
+echo '';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+}
+
+function addTeamMember($id) {
+echo '<div id="newMember" class="modal fade" role="dialog" style="width:1620px;">';
+echo '<div class="modal-dialog">';
+echo '<div class="modal-content" style="width:800px;">';
+echo '<div class="modal-header">';
+echo '<h3 class="modal-title" id="New member">New Member</h3>';
+echo '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+echo '<span aria-hidden="true">&times;</span>';
+echo '</button>';
+echo '</div>';
+echo '<div class="modal-body">';
+echo "<form method='POST' action='add_team_member.php?cuserid=" . $_GET['userid'] . "&teamid=" . $id . "'>";
+echo '<div class="form-group">';
+echo '<label for="titleText">Email Address:</label>';
+echo '<input type="text" class="form-control" name="emailText" id="emailText" required>';
+echo '</div>';
+echo '<div>';
+echo '<button type="button" class="btnCancel" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg">Go back</button>';
+echo '<button type="submit" class="btnPrimary">Add Member</button>';
+echo '</div>';
+echo '</form>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+echo '</div>';
+
 
 }
 
@@ -120,158 +358,12 @@ function doSQL($conn, $sql, $testMsgs)
     $result = $conn->query($sql);
   return $result;
 }
-
 ?>
 
-    <!-- New Team Member Modal -->
-    <div id="newMember" class="modal fade" role="dialog" style="width:1620px;">
-      <div class="modal-dialog">
-        <div class="modal-content" style="width:800px;">
-          <div class="modal-header">
-            <h3 class="modal-title" id="New member">New Member</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="titleText">Name*:</label>
-                <input type="text" class="form-control" id="titleText" required>
-              </div>
-              <div>
-                <button type="button" class="btnCancel" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg">Go back</button>
-                <button type="submit" class="btnPrimary">Add Member</button>
-              </div>
-            </form>
-          </div>
-          </div>
-        </div>
-      </div>
 
 
 
-    <!-- Team Modal -->
-    <div class="modal fade bd-example-modal-lg" id="displayTeam" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="Team 1 title">Team 1</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h5> Members </h5>
-            <div class="w3-container">
-              <ul class="w3-ul w3-card-4">
-                <li class="w3-bar">
-                  <span onclick="message" class="">✉</span>
-                  <img src="user-512.png" class="" style="width:30px">
-                  <div class="w3-bar-item">
-                    <span class="w3-large">Aissata</span><br>
-                  </div>
-                </li>
 
-                <li class="w3-bar">
-                  <span onclick="message" class="">✉</span>
-                  <img src="user-512.png" class="" style="width:30px">
-                  <div class="w3-bar-item">
-                    <span class="w3-large">Andrei</span><br>
-                  </div>
-                </li>
-
-                <li class="w3-bar">
-                  <span onclick="message" class="">✉</span>
-                  <img src="user-512.png" class="" style="width:30px">
-                  <div class="w3-bar-item">
-                    <span class="w3-large">Boran</span><br>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <h5> Events </h5>
-            <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th class="column" scope="col" margin-top: 5px;>#</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Time</th>
-                  <th scope="col">Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Project Lab</td>
-                  <td>12 PM</td>
-                  <td>Kilburn LF31</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Manchester City game</td>
-                  <td>5 PM</td>
-                  <td>Ethiad Stadium</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Meeting</td>
-                  <td>9 AM</td>
-                  <td>Kilburn 2.113</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <div class="modal-footer">
-              <button type="button" class="btnCancel" data-dismiss="modal">Cancel</button>
-              <button type="button" class="" data-toggle="modal" data-dismiss="modal" data-target="#newEvent">
-                + New Team Event
-              </button>
-              <button type="button" class="" data-toggle="modal" data-dismiss="modal" data-target="#newMember">
-                + New Team Member
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- New Team Modal -->
-    <div id="newTeam" class="modal fade" role="dialog" style="width:1620px;">
-      <div class="modal-dialog">
-        <div class="modal-content" style="width:800px;">
-          <div class="modal-header">
-            <h3 class="modal-title" id="New team">New Team Event</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-                <form method="POST" action='create_team.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'>
-                  <div class="form-group">
-                    <label for="titleText">Team Name:</label>
-                    <input type="text" class="form-control" name="titleText" id="titleText" required>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="desText">Description:</label>
-                    <input type="text" class="form-control" name="desText" id="desText">
-                  </div>
-
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="publicCheck" id="publicCheck">
-                    <label class="form-check-label" for="publicCheck">Enable anyone to add members</label>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btnCancel" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btnPrimary">Create Team</button>
-                  </div>
-                </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
 
