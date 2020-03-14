@@ -3,7 +3,7 @@
 
 <?php
 
-$servername = "remotemysql.com:3306";
+$servername = "remotemysql.com";
 $username = "6s7vM7E9Nh";
 $password = "NL70C8aGk7";
 $database = "6s7vM7E9Nh";
@@ -130,7 +130,7 @@ function createButtonForTeam($teamname, $counter, $id) {
     addTeamEvent($id);
     createTeamEventModal($id);
 
-    $servername = "remotemysql.com:3306";
+    $servername = "remotemysql.com";
     $username = "6s7vM7E9Nh";
     $password = "NL70C8aGk7";
     $database = "6s7vM7E9Nh";
@@ -228,7 +228,8 @@ function createButtonForTeam($teamname, $counter, $id) {
     echo "</table>";
 
     echo "<div class=\"modal-footer\">";
-    echo "<button type=\"button\" class=\"btnMessage\" action="">Chat</button>";
+    #echo "<button type=\"button\" class=\"btnPrimary\">Chat</button>";
+    echo "<a href=\"index.html\"> Chat</a>";
     echo "<button type=\"button\" class=\"btnCancel\" data-dismiss=\"modal\">Cancel</button>";
     echo "<button type=\"button\" class=\"btnPrimary\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#newEvent\">";
     echo "+ Team Event";
@@ -304,7 +305,7 @@ echo '<input type="checkbox" class="form-check-input" name="notificationCheck" i
 echo '<label class="form-check-label" for="notificationCheck">Enable notifications for this event</label>';
 echo '</div>';
 echo '<div class="modal-footer">';
-echo '<button type="button" class="btnCancel" data-dismiss="modal">Cancel</button>';
+echo '<button type="button" class="btnCancel" data-dismiss="modal" data-toggle="modal" data-target=".bd-example-modal-lg">Go back</button>';
 echo '<button type="submit" class="btnPrimary">Create</button>';
 echo '</div>';
 echo '</form>';
