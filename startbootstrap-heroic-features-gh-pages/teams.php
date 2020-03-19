@@ -230,8 +230,8 @@ function createButtonForTeam($teamname, $counter, $id) {
     echo "</table>";
 
     echo "<div class=\"modal-footer\">";
-    #echo "<button type=\"button\" class=\"btnPrimary\">Chat</button>";
-    echo "<a href=\"index.html\" target=\"_blank\"> Chat</a>";
+    //echo "<button onclick=\"127.0.0.1:3000\" type=\"button\" class=\"btnPrimary\" >Chat</button>";
+    echo "<a href=\"http://localhost:3000\" target=\"_blank\"> Chat</a>";
     echo "<button type=\"button\" class=\"btnCancel\" data-dismiss=\"modal\">Cancel</button>";
     echo "<button type=\"button\" class=\"btnPrimary\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#newEvent\">";
     echo "+ Team Event";
