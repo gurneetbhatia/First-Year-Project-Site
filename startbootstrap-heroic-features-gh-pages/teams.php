@@ -82,12 +82,12 @@ if(!$conn)
           <div class="modal-body">
                 <form method="POST" action="create_team.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>">
                   <div class="form-group">
-                    <label for="titleText">Team Name:</label>
+                    <label for="titleText">Team Name*:</label>
                     <input type="text" class="form-control" name="titleText" id="titleText" required>
                   </div>
 
                   <div class="form-group">
-                    <label for="desText">Description:</label>
+                    <label for="desText">Description*:</label>
                     <input type="text" class="form-control" name="desText" id="desText" required>
                   </div>
 
@@ -109,7 +109,7 @@ if(!$conn)
 
 
     <!-- Teams -->
-    <div class="content">
+    <div class="contentnewteams">
       <button type="button" class="btnEvent" data-toggle="modal" data-target="#newTeam">
         New Team
       </button>
@@ -143,7 +143,7 @@ function createButtonForTeam($teamname, $counter, $id) {
     die("Connection failed " . mysqli_connect_error());
   }
 
-      echo "<div class='content'>";
+      echo "<div class='contentteams'>";
       echo "<button type='button' class='btnTeam' data-toggle='modal' data-target='#team$counter'>";
       echo "$teamname";
       echo "</button>";
@@ -173,7 +173,6 @@ function createButtonForTeam($teamname, $counter, $id) {
       $name = mysqli_fetch_row($result1)[0];
 
       echo "<li class=\"w3-bar\">";
-      echo '<span onclick="message" class="">✉</span>';
       echo '<img src="user-512.png" class="" style="width:30px">';
       echo '<div class="w3-bar-item">';
       echo "<span class=\"w3-large\">$name</span><br>";
@@ -229,9 +228,12 @@ function createButtonForTeam($teamname, $counter, $id) {
     echo "</tbody>";
     echo "</table>";
 
+	echo "<form action=\"http://localhost:3000\">";
+	echo "<input class=\"btnPrimary\" target=\"_blank\" type=\"submit\" value=\"Chat\" />";
+	echo "</form>";
     echo "<div class=\"modal-footer\">";
     //echo "<button onclick=\"127.0.0.1:3000\" type=\"button\" class=\"btnPrimary\" >Chat</button>";
-    echo "<a href=\"http://localhost:3000\" target=\"_blank\"> Chat</a>";
+    //echo "<a href=\"http://localhost:3000\" target=\"_blank\" class=\"btnPrimary\"> Chat</a>";
     echo "<button type=\"button\" class=\"btnCancel\" data-dismiss=\"modal\">Cancel</button>";
     echo "<button type=\"button\" class=\"btnPrimary\" data-toggle=\"modal\" data-dismiss=\"modal\" data-target=\"#newEvent\">";
     echo "+ Team Event";
@@ -277,7 +279,7 @@ echo '';
 echo '';
 echo "<form method='POST' action='team_create_event.php?teamid=" . $id . "&ownerid=" . $ownerid . "'>";
 echo '<div class="form-group">';
-echo '<label for="titleText">Title:</label>';
+echo '<label for="titleText">Title*:</label>';
 echo '<input type="text" class="form-control" name=\'titleText\' id="titleText" required>';
 echo '</div>';
 echo '';
@@ -287,7 +289,7 @@ echo '<textarea class="form-control" name="descriptionText" id="descriptionText"
 echo '</div>';
 echo '';
 echo '<div class="form-group">';
-echo '<label for="date">Date:</label>';
+echo '<label for="date">Date*:</label>';
 echo '<input type="date" id="date" name="date"  required>';
 echo '</div>';
 echo '';
@@ -297,11 +299,11 @@ echo '<input type="time" id="appt" name="appt">';
 echo '</div>';
 echo '';
 echo '<div class="form-group">';
-echo '<label for="location">Location:</label>';
+echo '<label for="location">Location*:</label>';
 echo '<input type="text" class="form-control" name="location" id="location"  required>';
 echo '</div>';
 echo '';
-echo '<button type="chat" class="message"></button>';
+//echo '<button type="chat" class="message"></button>';
 echo '<div class="form-check">';
 echo '<input type="checkbox" class="form-check-input" name="notificationCheck" id="notificationCheck">';
 echo '<label class="form-check-label" for="notificationCheck">Enable notifications for this event</label>';
@@ -331,7 +333,7 @@ echo '</div>';
 echo '<div class="modal-body">';
 echo "<form method='POST' action='add_team_member.php?cuserid=" . $_GET['userid'] . "&teamid=" . $id . "'>";
 echo '<div class="form-group">';
-echo '<label for="titleText">Email Address:</label>';
+echo '<label for="titleText">Email Address*:</label>';
 echo '<input type="text" class="form-control" name="emailText" id="emailText" required>';
 echo '</div>';
 echo '<div>';
