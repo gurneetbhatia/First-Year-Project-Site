@@ -32,12 +32,12 @@
   </div>
   </div>
   <div class="content1">
-  <div id="teams" onclick="document.location.href='teams.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'">>
+  <div id="teams" onclick="document.location.href='teams.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'">
     <p >Teams</p>
   </div>
   </div>
   <div class="content2">
-  <div id="notes" onclick="document.location.href='notes.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'">>
+  <div id="notes" onclick="document.location.href='notes.php?sessionid=<?php echo $_GET['sessionid'] ?>&userid=<?php echo $_GET['userid'] ?>'">
     <p >Notes</p>
   </div>
 </div>

@@ -1,29 +1,15 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 
-  <title>Whiteboard | My Notes</title>
+<h1> Notes </h1>
 
-  <body>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th class="column" scope="col" margin-top: 5px;>#</th>
-          <th scope="col">Title</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>COMP15212 Notes</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Super Secret Note</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Apple Crumble Recipe</td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
+
+<body>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+      Select file to upload:
+      <input type="file" name="file">
+      <input type="submit" name="submit" value="Upload">
+  </form>
+
+</body>
+</html>

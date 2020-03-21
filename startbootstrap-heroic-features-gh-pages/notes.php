@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Whiteboard | My Notes</title>
+  <title>Heroic Features - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,24 +48,20 @@
    <a href="#" id="privacy">Privacy</a>
    <a href="#" id="about">About</a>
   </div>
-
+  <div class="header">
+   <h1>Your Notes</h1>
+ </div>
   </div>
-
+  <h14></h14>
   <form action="notes.php" method="post" enctype="multipart/form-data">
       Select file to upload:
       <input class="inputBrowse" type="file" name="file">
       <input class="inputBrowse1" type="submit" name="submit" value="Upload">
+
   </form>
+   <button class="deletebtn" type="button">Delete a file</button>
 
-  <footer class="py-5 bg-dark" style="padding-bottom: 10px;">
-    <div class="container">
-       <p1>
-         WHITEBOARD<sup>©</sup>
-       </p1>
 
-    </div>
-    <!-- /.container -->
-  </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -73,3 +69,74 @@
 
 </body>
 </html>
+<?php
+$status = '';
+
+// File upload path
+if (!file_exists('uploads/')) {
+    mkdir('uploads/', 0777, true);
+}
+
+$target_Dir = "uploads/";
+$file_Name = basename($_FILES["file"]["name"]);
+$target_FilePath = $target_Dir . $file_Name;
+$file_Type = pathinfo($target_FilePath,PATHINFO_EXTENSION);
+
+if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])) {
+    //accept certain file formats
+    $accepted_Types = array('txt','pdf','xls');
+    if(in_array($file_Type, $accepted_Types)){
+
+          if ($_FILES["file"]["size"] > 25000000) { // Check file size
+             $status ='<div style="position:absolute; left:50px; bottom:170px;">Sorry, your file is larger than 25MB.</div>';
+
+          }elseif(move_uploaded_file($_FILES["file"]["tmp_name"], $target_FilePath)){
+            //$status ='<div style="position:absolute; left:50px; bottom:170px;">The file ".$file_Name. " has been uploaded. <br>Type: " . $_FILES["file"]["type"] . "
+          //  <br> Size: " . ($_FILES["file"]["size"] / 1024) . " Kb"</div>';
+            $status = '<div style="position:absolute; left:50px; bottom:130px;">The file '.$file_Name.' has been uploaded. <br>
+                      Type: ' . $_FILES["file"]["type"] . '
+                      <br> Size: ' . ($_FILES["file"]["size"] / 1024) . ' Kb</div>';
+        }else{
+          $status ='<div style="position:absolute; left:50px; bottom:170px;">Sorry, there was an error uploading your file.</div>';
+            //$status = "<br>Sorry, there was an error uploading your file.";
+        }
+
+        // If the file is not an accepted type
+    }else{
+       $status ='<div style="position:absolute; left:50px; bottom:170px;">Sorry, you can only upload TXT & PDF files.</div>';
+        //$status = '<br>Sorry, you can only upload TXT & PDF files.';
+    }
+  }else{
+      $status = '';
+  }
+
+// Display current status
+
+
+echo $status;
+
+
+// display files
+$dir = "uploads/";
+$n = 1;
+// Open the folder
+
+$dir_handle = @opendir($dir) or die("Unable to open $dir");
+
+// Loop through the files
+while ($file = readdir($dir_handle)) {
+
+if($file == "." || $file == ".." || $file == "index.php" )
+    continue;
+  echo '<hr>';
+  echo "<pre>                                                        ".$n."-<a href=\"".$dir."/".$file."\">$file</a></pre>";
+  $n = $n+1;
+
+
+
+}
+
+
+
+
+?>

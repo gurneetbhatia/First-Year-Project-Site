@@ -21,7 +21,8 @@ p1 {
 
 
 body {
- background-image: url("imagetry5.jpg");
+  background-image: url("white2.jpg");
+  background-size: cover;
  background-color: #cccccc;
 }
 
