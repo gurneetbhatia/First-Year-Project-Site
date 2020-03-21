@@ -36,7 +36,7 @@
         <a1 href="events.php"><i class="fa fa-fw fa-calendar"></i> Events</a1>
         <a href="teams.php"><i class="fa fa-fw fa-users"></i> Teams</a>
         <a href="notes.php"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
-        <a href="#"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        <a href="../Login/login.php"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
       </div>
     </div>
   </nav>
