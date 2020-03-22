@@ -67,7 +67,7 @@
 
   <div id="settingsnav" class="settings">
    <a2 href="#" id="settings">Settings</a2>
-   <a href="#" id="account">Account</a>
+   <a href="change_Password.php" id="account">Account</a>
    <a href="#" id="privacy">Privacy</a>
    <a href="#" id="about">About</a>
   </div>

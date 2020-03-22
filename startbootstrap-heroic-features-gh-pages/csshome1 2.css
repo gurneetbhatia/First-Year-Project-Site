@@ -1,0 +1,106 @@
+/*Box 1 */
+.content {
+width: 100%;
+padding-top: 10vh;
+padding-bottom: 1vh;
+
+}
+.content div {
+position: relative;
+left: 5vw;
+
+
+/* top: 200px; */
+width: 90vw;
+height: 20vh;
+border-radius: 28px;
+background-color: rgb(85, 182, 183);
+cursor: pointer;
+-webkit-transition: transform 0.5s;
+transition: transform 0.5s;
+}
+.content div:hover {
+transform: scale(1.05, 1.05);
+-webkit-transform: scale(1.05, 1.05);
+-moz-transform: scale(1.05, 1.05);
+background-color: rgb(255, 204, 51);
+/* border-top: 4px solid rgb(0, 0, 0);
+border-right: : 4px solid rgb(0, 0, 0);
+border-left: : 4px solid rgb(0, 0, 0);
+border-bottom: 4px solid rgb(0, 0, 0);
+*/
+}
+.content p {
+padding-top: 6vh;
+padding-left: 38vw;
+font-size: 50px;
+font-weight: bold;
+font-family: Avantgarde;
+}
+
+/*Box 2 */
+.content1 {
+width: 100%;
+padding-top: 1vh;
+padding-bottom: 1vh;
+}
+.content1 div {
+position: relative;
+left: 5vw;
+/* top: 200px; */
+width: 90vw;
+height: 20vh;
+border-radius: 28px;
+background-color: rgb(128, 128, 128);
+cursor: pointer;
+-webkit-transition: transform 0.5s;
+transition: transform 0.5s;
+}
+.content1 div:hover {
+transform: scale(1.05, 1.05);
+-webkit-transform: scale(1.05, 1.05);
+-moz-transform: scale(1.05, 1.05);
+background-color: rgb(255, 204, 51);
+
+}
+.content1 p {
+padding-top: 6vh;
+padding-left: 38vw;
+font-size: 50px;
+font-weight: bold;
+font-family: Avantgarde;
+}
+
+/*Box 3*/
+
+.content2 {
+width: 100%;
+padding-top: 1vh;
+padding-bottom: vh;
+}
+.content2 div {
+position: relative;
+left: 5vw;
+/* top: 200px; */
+width: 90vw;
+height: 20vh;
+border-radius: 28px;
+background-color: rgb(85, 182, 183);
+cursor: pointer;
+-webkit-transition: transform 0.5s;
+transition: transform 0.5s;
+}
+.content2 div:hover {
+transform: scale(1.05, 1.05);
+-webkit-transform: scale(1.05, 1.05);
+-moz-transform: scale(1.05, 1.05);
+background-color: rgb(255, 204, 51);
+
+}
+.content2 p {
+padding-top: 6vh;
+padding-left: 38vw;
+font-size: 50px;
+font-weight: bold;
+font-family: Avantgarde;
+}

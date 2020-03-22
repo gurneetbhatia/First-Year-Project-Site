@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include('login.php');
 
 $servername = "remotemysql.com:3306";
@@ -36,9 +36,10 @@ if($result->num_rows > 0) {
 				}
 				$userid = $row['UserID'];
 				$sql = "INSERT INTO `Session`(`SessionID`, `UserID`) VALUES ($sessionid, $userid)";
-				$GLOBALS['userid'] = $userid;
-				$GLOBALS['sessionid'] = $sessionid;
+				$_GLOBALS['userid'] = $userid;
+				$_GLOBALS['sessionid'] = $sessionid;
 				doSQL($conn, $sql, true);
+				$_SESSION['userId'] = $userid;
 				changePage("../startbootstrap-heroic-features-gh-pages/home.php?userid=$userid&sessionid=$sessionid");// change this to home page
 			}
 			else {

@@ -1,0 +1,147 @@
+body {
+    background-color: #D0D0D0;
+}
+.enterPinBtn {
+    font-weight: 600;
+    color: rgb(85, 182, 183);
+    background-color: #fff;
+}
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.login{
+    background-color: rgb(85, 85, 85);
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login h3{
+    text-align: center;
+    color: rgb(85, 182, 183);
+}
+.login .btnSubmit {
+    font-weight: 600;
+    color: rgb(85, 182, 183);
+    background-color: #fff;
+}
+.reg-form{
+    padding: 5%;
+    background: rgb(85, 182, 183);
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.reg-form h3{
+    text-align: center;
+    color: #fff;
+}
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.reg-form .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: rgb(85, 182, 183);
+}
+.reg-form .btnSubmit{
+    font-weight: 600;
+    color: rgb(85, 182, 183);
+    background-color: #fff;
+}
+.reg-form .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login .ForgetPwd{
+    color: rgb(85, 182, 183);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login .placeholder {
+    padding-top: 16px;
+}
+
+.logo {
+    max-width: 10%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+  display: block;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal-content .btn:hover {
+  opacity: 1;
+}
+
+.modal-content input[type=text], .modal-content input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.modal-content input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.modal-content .btn {
+  background-color: rgb(85, 182, 183);;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

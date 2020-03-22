@@ -1,0 +1,55 @@
+/* Style the links inside the sidenav */
+#settingsnav a {
+  position: absolute;
+  left: -90px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  border-radius: 0 14px 14px 0;
+}
+
+#settingsnav a:hover {
+  left: -10px; /* On mouse-over, make the elements appear as they should */
+  background-color: rgb(102, 255, 102)
+
+}
+
+/*#settingsnav a2 {
+  left: 0;
+  position: absolute;
+  transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 19px;
+  font-family: "Times New Roman", Times, serif;;
+  color: white;
+  padding-top: 20px;
+  border: white;
+  border-color: rgb(85, 182, 183);
+  border-style: outset;
+}*/
+
+/*#settings {
+  top: 0px;
+  background-color: #343a40;
+}*/
+
+#account {
+  top: 70px;
+  background-color: rgb(85, 182, 183);
+}
+
+#privacy {
+  top: 130px;
+  background-color: rgb(85, 182, 183);
+}
+
+
+#about {
+  top: 190px;
+  background-color: rgb(85, 182, 183);
+}
