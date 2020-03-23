@@ -44,9 +44,9 @@
   </nav>
 
   <div id="settingsnav" class="settings">
-   <a href="#" id="account">Account</a>
-   <a href="#" id="privacy">Privacy</a>
-   <a href="#" id="about">About</a>
+   <a href="settings.html" id="account">Settings</a>
+   <a href="policy.html" id="privacy">Privacy</a>
+   <a href="us.html" id="about">About</a>
   </div>
   <div class="header">
    <h1>Your Notes</h1>

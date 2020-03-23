@@ -1,9 +1,43 @@
 
 <!DOCTYPE html>
 <html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Whiteboard | Home</title>
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="cssnotes.css">
+<link rel="stylesheet" href="csshome1.css">
+<link rel="stylesheet" href="stylesheet1.css">
+<link rel="stylesheet" href="sidenav.css">
+
+<!-- Custom styles for this template -->
+<link href="css/heroic-features.css" rel="stylesheet">
+
+</head>
 <body>
 
 <h1>Settings</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="home.php"><img class="logo" src="Logo.png" height="30" width="30">Whiteboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar">
+      <a1 href="home.php"><i class="fa fa-fw fa-home"></i> Home</a1>
+      <a href="events.php"><i class="fa fa-fw fa-calendar"></i> Events</a>
+      <a href="teams.php"><i class="fa fa-fw fa-users"></i> Teams</a>
+      <a href="notes.php"><i class="fa fa-fw fa-sticky-note"></i> Notes</a>
+      <a href=""><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+    </div>
+  </div>
+</nav>
 
 <ul class="nav navbar-nav navbar-centered">
    <li class="dropdown">
@@ -20,25 +54,10 @@
               <label for="hide"> Hide my username</label><br>
 
             </form>
-            <br>
-            <li>Change User Name</li>
-            <br>
-            <form>
-           <label for="newname">New Username:</label><br>
-           <input type="text" id="newname" name="newname"><br>
-           </form>
-           <br>
-            <li>Change Password</li>
-            <br>
-            <form>
-              <label for="oldpw">Old Password:</label><br>
-              <input type="text" id="oldpw" name="oldpw"><br>
-              <label for="newpw">New Password:</label><br>
-              <input type="text" id="newpw" name="newpw"><br>
-              <label for="confrimpw">Confirm Password:</label><br>
-              <input type="text" id="confirmpw" name="confrimpw"><br>
 
-            </form>
+           <br>
+            <li><a href="change_Password.php">Change your password</a></li>
+            <br>
             <br>
           </ul>
         </li>
@@ -53,18 +72,7 @@
           <br>
      </ul>
 
-     <ul class="dropdown-menu">
-       <li>General</li>
-       <br>
-       <form action="/action_page.php">
-         <input type="checkbox" id="disable2" name="disable2" value="Disable2">
-         <label for="disable2"> disable Google Calendar</label><br>
-         <input type="checkbox" id="disable3" name="disable3" value="Disable3">
-         <label for="disable3"> disable Google Maps</label><br>
 
-         </form>
-         <br>
-    </ul>
 
     <ul class="dropdown-menu">
       <li>Deactive Account</li>
@@ -82,9 +90,11 @@
            role="button" aria-haspopup="true" aria-expanded="false">
            About<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="file:///home/h28219zy/GitRepos/first_group_project/Settings/policy.html">Privacy Policy</a></li>
-            <li><a href="#">Terms of Use</a></li>
-            <li><a href="#">Open-Source Libraries</a></li>
+
+            <li><a href="policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="api.html">APIs Used</a></li>
+            <li><a href="us.html">Our Team</a></li>
           </ul>
 
       </ul>
@@ -93,3 +103,10 @@
 
 
 </div>
+<footer class="py-5 bg-dark" style="padding-bottom: 10px;">
+  <div class="container">
+     <p1>
+       WHITEBOARD<sup>©</sup>
+     </p1>
+
+  </div>

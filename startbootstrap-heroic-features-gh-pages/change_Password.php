@@ -1,16 +1,16 @@
 <?php
 session_start();
 ?>
- 
+
 <head>
- 
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
- 
+
   <title>Whiteboard | Home</title>
- 
+
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,14 +18,14 @@ session_start();
   <link rel="stylesheet" href="csshome1.css">
   <link rel="stylesheet" href="stylesheet1.css">
   <link rel="stylesheet" href="sidenav.css">
- 
+
   <!-- Custom styles for this template -->
   <link href="css/heroic-features.css" rel="stylesheet">
- 
+
 </head>
- 
+
 <body>
- 
+
 <div class="textt">
   <p>WELCOME TO WHITEBOARD</p>
 </div>
@@ -45,38 +45,36 @@ session_start();
       </div>
     </div>
   </nav>
- 
- 
+
+
   <!-- Page Content -->
- 
+
     <!-- Jumbotron Header -->
- 
- 
- 
+
+ <button type="button" style="background-color: #4CAF50; border-radius: 8px; border: 2px solid black" onclick="location.href='settings.html'">Go back</button>
+
     <!-- Page Features -->
- 
-    <!-- /.row -->
- 
+
   </div>
   <!-- /.container -->
- 
+
   <!-- Footer -->
   <footer class="py-5 bg-dark" style="padding-bottom: 10px;">
     <div class="container">
        <p1>
          WHITEBOARD<sup>©</sup>
        </p1>
- 
+
     </div>
     <!-- /.container -->
   </footer>
- 
+
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
- 
+
 </body>
- 
+
 </html>
 
 

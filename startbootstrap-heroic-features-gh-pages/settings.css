@@ -1,0 +1,78 @@
+h1 {
+  position: relative;
+  text-align: center;
+  padding-right: 5vh;
+  top: 5vh;
+  text-decoration: underline;
+}
+
+.all {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.check {
+border-style: solid;
+border-color: black;
+position: relative;
+width: 25vh;
+height: 20vh;
+border-radius: 8px;
+left: 5vh;
+top: 10vh;
+display: inline-block;
+position: relative;
+}
+
+.check1 {
+border-style: solid;
+border-color: black;
+position: relative;
+width: 25vh;
+height: 20vh;
+border-radius: 8px;
+left: 14vh;
+top: 10vh;
+display: inline-block;
+position: relative;
+}
+
+.check2 {
+border-style: solid;
+border-color: black;
+position: relative;
+width: 30vh;
+height: 20vh;
+border-radius: 8px;
+left: 23vh;
+top: 11vh;
+display: inline-block;
+position: relative;
+}
+
+.check3 {
+border-style: solid;
+border-color: black;
+position: relative;
+width: 29vh;
+height: 20vh;
+border-radius: 8px;
+left: 32vh;
+top: 11vh;
+display: inline-block;
+position: relative;
+}
+
+.check4 {
+border-style: solid;
+border-color: black;
+position: relative;
+width: 25vh;
+height: 20vh;
+border-radius: 8px;
+left: 41vh;
+top: 10vh;
+display: inline-block;
+position: relative;
+}
