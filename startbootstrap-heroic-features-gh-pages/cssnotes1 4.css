@@ -1,0 +1,39 @@
+.deletebtn {
+  position: relative;
+  left: 50vh;
+  top: 64vh;
+  background-color: rgb(85, 182, 183);
+  color: black;
+  border-radius: 14px;
+  font-size: 20px;
+  border: black;
+  border-color: black;
+  border-style: solid;
+}
+
+h14 {
+  position: relative;
+  left: 1vh;
+  top: 76vh;
+  border: black;
+  border-color: black;
+  border-style: solid;
+  padding-left: 79vh;
+  padding-top: 12vh;
+  border-radius: 14px;
+}
+
+.header {
+  position: relative;
+  left: 79vh;
+  top: 5vh;
+  font-size: 30px;
+  text-decoration: underline;
+}
+
+
+form {
+position: relative;
+left: 2vh;
+top: 63vh;
+}

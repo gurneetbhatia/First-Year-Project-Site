@@ -1,0 +1,96 @@
+
+/* Dropdown Button */
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width : 100%;
+  height: 4%;
+}
+
+teamBtn {
+  left: 100;
+}
+
+p1 {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Avantgarde;
+  color: white;
+  padding-left: 129vh;
+  padding-top: 2vw;
+
+
+}
+body {
+  background-image: url("white2.jpg");
+  background-size: cover;
+  background-color: #cccccc;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar {
+ width: 100%;
+ background-color: #343a40;
+ overflow: auto;
+ padding-right: 100px;
+}
+
+
+.navbar a {
+ float: left;
+ text-align: center;
+ padding: 6px;
+ color: white;
+ text-decoration: none;
+ font-size: 17px;
+}
+
+
+.navbar a1 {
+ float: left;
+ text-align: center;
+ padding: 6px;
+ color: white;
+ text-decoration: none;
+ font-size: 17px;
+ background-color: rgb(85, 182, 183);
+ border-radius: 12px;
+}
+
+.navbar a1:hover {
+ background-color: #000;
+}
+
+
+.active {
+ background-color: #4CAF50;
+}
+
+.navbar a:hover {
+ background-color: #000;
+}
+
+
+.active {
+ background-color: #4CAF50;
+}
+
+@media screen and (max-width: 500px) {
+ .navbar a1 {
+   float: none;
+   display: block;
+ }
+
+
+@media screen and (max-width: 500px) {
+ .navbar a {
+   float: none;
+   display: block;
+ }

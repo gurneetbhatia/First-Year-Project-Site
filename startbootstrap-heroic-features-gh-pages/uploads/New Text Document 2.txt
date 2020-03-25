@@ -1,0 +1,667 @@
+from tkinter import Tk, Canvas, Toplevel, PhotoImage, NW, Entry, Button
+from tkinter import ttk
+import tkinter
+import random 
+import numpy as np
+import os.path
+from win32api import GetSystemMetrics
+
+def growSnake():
+    global selected_color_body
+    lastElement = len(snake) - 1
+    lastElementPos = canvas.coords(snake[lastElement])
+    if generate_random == 1:
+        selected_color_body = random.choice(colours)
+    else:
+        selected_color_body = selected_color_body
+    snake.append(canvas.create_rectangle(0,0,snakeSize,snakeSize,fill=selected_color_body))
+    if (direction == "left"): 
+        canvas.coords(snake[lastElement+1],lastElementPos[0]+snakeSize,lastElementPos[1],lastElementPos[2]+snakeSize,lastElementPos [3])
+    elif (direction == "right"):
+        canvas.coords(snake[lastElement+1],lastElementPos[0]-snakeSize,lastElementPos[1],lastElementPos[2]-snakeSize,lastElementPos[3])
+    elif (direction == "up"): 
+        canvas.coords(snake[lastElement+1],lastElementPos[0],lastElementPos[1]+snakeSize,lastElementPos[2],lastElementPos[3]+snakeSize)
+    else:
+        canvas.coords(snake[lastElement+1],lastElementPos[0],lastElementPos[1]-snakeSize,lastElementPos[2],lastElementPos[3]-snakeSize)
+    global score
+    score += 10
+    txt = "score:" + str(score)
+    canvas.itemconfigure(scoreText, text=txt) 
+    #print(snake)
+ 
+def moveFood():
+    global food, foodX, foodY, eat_count
+    canvas.move(food, (foodX*(-1)), (foodY*(-1)))
+    foodX = random.randint(0,width-snakeSize)
+    foodY = random.randint(0,height-snakeSize)
+    canvas.move(food, foodX, foodY) 
+    eat_count +=1
+    if eat_count == 5:
+        placebonusfood()
+        eat_count=0
+    
+def overlapping(a,b):
+    if a[0] < b[2] and a[2] > b[0] and a[1] < b[3] and a[3] > b[1]:
+        return True
+    return False 
+ 
+def moveSnake():
+    global leaderboard, border, gameOver
+    global bonus_food_placed, border_widget, border_text
+#    if border_widget.get() is True:
+#        print("hi")
+    if paused is False:
+        canvas.pack() 
+        positions = []
+        positions.append(canvas.coords(snake[0])) 
+        if positions[0][0] < 0:
+            if border is True:
+                if paused is False:
+                    if gameOver is False:
+                        gameOver = True
+                        canvas.create_text(width/2,height/2,fill="white",font="Times 20 italic bold", text="")
+                        leaderboard_load()
+                        leaderboard_update()
+                        leaderboard_print()
+            else:
+                if gameOver is False:
+                    canvas.coords(snake[0],width-snakeSize,positions[0][1],width,positions[0][3])
+                    canvas.pack()
+        elif positions[0][2] > width:
+            if border is True:
+                if paused is False:
+                    if gameOver is False:
+                        gameOver = True
+                        canvas.create_text(width/2,height/2,fill="white",font="Times 20 italic bold", text="")
+                        leaderboard_load()
+                        leaderboard_update()
+                        leaderboard_print()
+            else:
+                if gameOver is False:
+                    canvas.coords(snake[0],0-snakeSize,positions[0][1],0,positions[0][3])
+        elif positions[0][3] > height:
+            if border is True:
+                if paused is False:
+                    if gameOver is False:
+                        gameOver = True
+                        canvas.create_text(width/2,height/2,fill="white",font="Times 20 italic bold", text="")
+                        leaderboard_load()
+                        leaderboard_update()
+                        leaderboard_print()
+            else:
+                if gameOver is False:
+                    canvas.coords(snake[0],positions[0][0],0-snakeSize,positions[0][2],0)
+        elif positions[0][1] < 0:
+            if border is True:
+                if paused is False:
+                    if gameOver is False:
+                        gameOver = True
+                        canvas.create_text(width/2,height/2,fill="white",font="Times 20 italic bold", text="")
+                        leaderboard_load()
+                        leaderboard_update()
+                        leaderboard_print()
+            else:
+                if gameOver is False:
+                    canvas.coords(snake[0],positions[0][0],height,positions[0][2],height-snakeSize) 
+            
+        positions.clear()
+        positions.append(canvas.coords(snake[0]))
+        #print(positions[0]) 
+        
+        if gameOver is False:
+            if direction == "left":
+                canvas.move(snake[0], -snakeSize,0)
+            elif direction == "right":
+                canvas.move(snake[0], snakeSize,0)
+            elif direction == "up":
+                canvas.move(snake[0], 0,-snakeSize)
+            elif direction == "down":
+                canvas.move(snake[0], 0,snakeSize) 
+            
+        sHeadPos = canvas.coords(snake[0])
+        foodPos = canvas.coords(food)
+            
+        
+        if overlapping(sHeadPos, foodPos):
+            moveFood()
+            growSnake()
+        
+        if bonus_food_placed is True:
+            bonusPos = canvas.coords(food_bonus)
+            if overlapping(sHeadPos, bonusPos):
+                growSnake()
+                global score
+                score += 40
+                txt = "score:" + str(score)
+                canvas.itemconfigure(scoreText, text=txt) 
+                bonus_food_placed=False
+                deletebonusfood()
+                
+        for i in range(1,len(snake)):
+            if overlapping(sHeadPos, canvas.coords(snake[i])):
+                if paused is False:
+                    if gameOver is False:
+                        gameOver = True
+                        canvas.create_text(width/2,height/2,fill="white",font="Times 20 italic bold", text="")
+                        leaderboard_load()
+                        leaderboard_update()
+                        leaderboard_print()
+        
+        # get other positions
+        for i in range(1,len(snake)):
+            if gameOver is False:
+                positions.append(canvas.coords(snake[i]))
+        # update positions
+        for i in range(len(snake)-1):
+                if gameOver is False:
+                    canvas.coords(snake[i+1],positions[i][0],positions[i][1],positions[i][2],positions[i][3]) 
+     
+        if 'gameOver' not in locals():
+            if paused is False:
+                window.after(speed, moveSnake)
+ 
+def placeFood():
+    global food, foodX, foodY
+    food = canvas.create_rectangle(0,0, snakeSize, snakeSize, fill="steel blue" )
+    foodX = random.randint(0,width-snakeSize)
+    foodY = random.randint(0,height-snakeSize)
+    canvas.move(food, foodX, foodY) 
+
+def count():
+    global counting
+    global counter
+    global count_times
+    counting = True
+    counter=counter - 1
+    canvas.itemconfigure(resume_key_show, text="")
+    canvas.itemconfigure(save_game, text="")
+    canvas.itemconfigure(resume_counter, text=str(counter))
+    if counter > 0:
+        window.after(500, count)
+    else:
+        global direction
+        global lastdirection
+        global paused
+        direction = lastdirection
+        counter = 4
+        canvas.itemconfigure(resume_counter, text="")
+        paused = False
+        moveSnake()
+ 
+def pause(event):
+    global lastdirection
+    global direction
+    global paused
+    paused=True
+    lastdirection = direction
+    direction = "" 
+    canvas.itemconfigure(resume_key_show, text="Press 'R' to resume")
+    canvas.itemconfigure(save_game, text="Press 'P' to save")
+
+def pause_boss_key():
+    global lastdirection
+    global direction
+    global paused
+    paused=True
+    lastdirection = direction
+    direction = "" 
+    canvas.itemconfigure(resume_key_show, text="Press 'R' to resume")
+#    canvas.itemconfigure(save_game, text="Press 'P' to save")
+    
+ 
+def leftKey(event):
+    if paused is False:
+        global direction
+        if direction == "right":
+            pass
+        else:
+            direction = "left" 
+ 
+def rightKey(event):
+    if paused is False:
+        global direction
+        if direction == "left":
+            pass
+        else:
+            direction = "right" 
+ 
+def upKey(event):
+    if paused is False:
+        global direction
+        if direction == "down":
+            pass
+        else:
+            direction = "up" 
+ 
+def downKey(event):
+    if paused is False:
+        global direction
+        if direction == "up":
+            pass
+        else:
+            direction = "down" 
+
+def resume(event):
+    if paused is True:
+        count()
+        
+def shrink(event):
+    global snake
+    if len(snake) > 1:
+        canvas.delete(snake[len(snake)-1])
+        snake=snake[:-1]
+
+def shrinkall(event):
+    global snake
+    global snake_body
+    snake_body=snake[1:len(snake)]
+    snake=snake[0:1]
+    for i in range(len(snake_body)):
+        canvas.delete(snake_body[i])
+
+def grow(event):
+    growSnake()
+        
+def faster(event):
+    global speed
+    global speed_level
+    global speed_changing
+    if speed > 20:
+        if speed_changing is False:
+            speed -= 20
+            speed_level += 1
+            canvas.itemconfigure(speed_text, text="Speed: Level " + str(speed_level))
+            speed_changing=True
+            window.after(500, speed_text_delete)
+        
+def slower(event):
+    global speed
+    global speed_level
+    global speed_changing
+    if speed < 270:
+        if speed_changing is False:
+            speed += 20
+            speed_level -= 1
+            canvas.itemconfigure(speed_text, text="Speed: Level " + str(speed_level))
+            speed_changing=True
+            window.after(500, speed_text_delete)
+            
+def boss_key(event):
+    global j
+    j = 1
+    window.destroy()
+    
+    
+    
+def quit_game(event):
+    global j, finish
+    if finish is True:
+        window.destroy()
+        j = 1
+
+def quit_game_menu():
+    global j, finish, quit_f
+    quit_f = True
+    j = 1  
+    window.destroy()
+             
+
+        
+def play(event):
+        window.destroy()
+        
+def again(event):
+    global j, finish
+    if finish is True:
+        window.destroy()
+        j = 0
+    
+#def save(event):
+#    global saving
+#    saving=True
+#    if saving is True:
+#       if paused is True:
+#        canvas.itemconfigure(resume_key_show, text="")
+#        canvas.itemconfigure(save_game, text="")
+#        canvas.itemconfigure(saving_game, text="Saving...")
+#        saving=False
+    
+def placebonusfood():
+    global food_bonus, bonusX, bonusY, bonus_food_placed
+    food_bonus = canvas.create_rectangle(0,0, snakeSize, snakeSize, fill="red" )
+    bonusX = random.randint(0,width-snakeSize)
+    bonusY = random.randint(0,height-snakeSize)
+    canvas.move(food_bonus, bonusX, bonusY)
+    window.after(3000, deletebonusfood)
+    bonus_food_placed=True
+    
+def deletebonusfood():
+    global food_bonus, bonusX, bonusY, bonus_food_placed
+    canvas.delete(food_bonus)
+    bonus_food_placed=False
+    
+def leaderboard_load():
+    global leaderboard, f, filename
+    if os.path.isfile(filename) is True:
+        with open(filename, 'r+') as f:
+            leaderboard = f.readlines()
+        #leaderboard = [x.strip() for x in leaderboard]
+            f.close
+    else:
+        with open(filename, 'w+') as f:
+            leaderboard=['unknown\n', '0\n', 'unknown\n', '0\n', 'unknown\n', '0']
+            f.writelines(leaderboard)
+  
+def leaderboard_update():
+    global leaderboard
+    if score > int(leaderboard[1]):
+        leaderboard[5]=leaderboard[3]
+        leaderboard[4]=leaderboard[2]
+        leaderboard[3]=leaderboard[1]
+        leaderboard[2]=leaderboard[0]
+        leaderboard[1]=str(score) +'\n'
+        leaderboard[0]=str(username) +'\n'
+    elif score > int(leaderboard[3]):
+        leaderboard[5]=leaderboard[3]
+        leaderboard[4]=leaderboard[2]
+        leaderboard[3]=str(score) +'\n'
+        leaderboard[2]=str(username) +'\n'
+    elif score > int(leaderboard[5]):
+        leaderboard[4]=str(username) +'\n'
+        leaderboard[5]=str(score) +'\n'
+
+def leaderboard_print():
+    global f, NW, img4, img5
+    img4 = PhotoImage(file="crown2.png")
+    img5 = PhotoImage(file="game14.png")
+    with open(filename, 'w+') as f:
+        f.writelines(leaderboard)
+        f.close()
+        global finish
+        finish = True
+        canvas.create_text((width/2),(height/2)-300,fill="white",font="Times 35 italic bold", text="High Scores")
+        canvas.create_text((width/2)-200,(height/2)-225,fill="gold",font="Times 35 italic bold", text="1st")
+        canvas.create_text((width/2)-10,(height/2)-200,fill="gold",font="Times 35 italic bold", text=leaderboard[0])
+        canvas.create_text((width/2)+180,(height/2)-200,fill="gold",font="Times 35 italic bold", text=leaderboard[1])
+        canvas.create_text((width/2)-200,(height/2)-175,fill="silver",font="Times 35 italic bold", text="2nd")
+        canvas.create_text((width/2)-10,(height/2)-150,fill="silver",font="Times 35 italic bold", text=leaderboard[2])
+        canvas.create_text((width/2)+180,(height/2)-150,fill="silver",font="Times 35 italic bold", text=leaderboard[3])
+        canvas.create_text((width/2)-200,(height/2)-125,fill="#cd7f32",font="Times 35 italic bold", text="3rd")
+        canvas.create_text((width/2)-10,(height/2)-100,fill="#cd7f32",font="Times 35 italic bold", text=leaderboard[4])                  
+        canvas.create_text((width/2)+180,(height/2)-100,fill="#cd7f32",font="Times 35 italic bold", text=leaderboard[5])
+#        canvas.create_text((width/2),(height/2)+75 ,fill="red",font="Times 20 italic bold", text="Press 'Space' to return main menu") 
+#        canvas.create_text((width/2),(height/2)+105 ,fill="yellow",font="Times 20 italic bold", text="Press 'Q' to quit")
+        #canvas.create_line(10, 337, 545, 337, 545, 408, 10, 408, 10, 337, fill="white")
+        canvas.create_line(250, 50, 1290, 50, 1290, 325, 250, 325, 250, 50, fill="violet")
+        canvas.create_image(275, 100, anchor=NW, image=img4)
+        canvas.create_image(1020, 100, anchor=NW, image=img4)
+        canvas.create_image(260, (height/2)-25, anchor=NW, image=img5)
+        canvas.create_text((width/2),(height/2)+225,fill="violet",font="Times 23 bold", text="Press <Space> to play again")
+        canvas.create_text((width/2),(height/2)+275,fill="yellow",font="Times 23 bold", text="Press 'Q' to quit")
+    
+def place_border():
+    global border
+    border=True
+    
+def speed_text_delete():
+    canvas.itemconfigure(speed_text, text="")
+    global speed_changing
+    speed_changing = False
+ 
+def setWindowDimensions(w,h):
+    window = Tk()
+    #create window
+    window.title("Snake Game")
+    #title of window 
+    ws = window.winfo_screenwidth()
+    # computers screen size
+    hs = window.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    # calculate center
+    y = (hs/2) - (h/2) 
+    window.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #size of window
+    return window
+
+
+
+
+def go_back():
+    global window, canvas, snake, scoreText, resume_counter, resume_key_show, save_game, saving_game, speed_text, width, height, back_button
+    global head_color_widget, body_color_widget, username_widget, selected_color_head, selected_color_body, start_button, username, controls_button, head_color_text, body_color_text
+    global username_text, controls1, controls2, controls3, controls4, controls5, controls6, controls7, controls8, controls9, border_widget, border_text, checkboxstate
+    
+    back_button.destroy()
+    controls1.destroy()
+    controls2.destroy()
+    controls3.destroy()
+    controls4.destroy()
+    controls5.destroy()
+    controls6.destroy()
+    controls7.destroy()
+    controls8.destroy()
+    controls9.destroy()
+
+    start_menu()
+
+def show_controls(event):
+    global canvas1, window, pause, count
+    pause_boss_key()
+    top = Toplevel()
+    canvas1 = Canvas(top, bg="black", width=width, height=height)
+    img9 = PhotoImage(file="words.png")
+    canvas1.create_image(0, 0, anchor=NW, image=img9)
+#    canvas1.create_line(10, 15, 545, 15, 545, 325, 10, 325, 10, 15, fill="blue")
+#    canvas1.create_line(10, 379, 545, 379, 545, 461, 10, 461, 10, 379, fill="indigo")
+#    canvas1.create_text((width/2),30,fill="white",font="Times 15 italic bold", text="Go faster = F")
+#    canvas1.create_text((width/2),70,fill="white",font="Times 15 italic bold", text="Go slower = D")
+#    canvas1.create_text((width/2),110,fill="white",font="Times 15 italic bold", text="Shrink one = S")
+#    canvas1.create_text((width/2),150,fill="white",font="Times 15 italic bold", text="Shrink all = A")
+#    canvas1.create_text((width/2),190,fill="white",font="Times 15 italic bold", text="Grow = G")
+#    canvas1.create_text((width/2),230,fill="white",font="Times 15 italic bold", text="Pause and Resume = P and R")
+#    canvas1.create_text((width/2),270,fill="white",font="Times 15 italic bold", text="Boss key = B")
+#    canvas1.create_text((width/2),310,fill="white",font="Times 15 italic bold", text="For controls use = Arrows on keyboard")
+    canvas1.focus_set()
+    canvas1.pack()
+    top.state('zoomed')
+    top.mainloop()
+
+def show_controls1():
+    global window, canvas, snake, scoreText, resume_counter, resume_key_show, save_game, saving_game, speed_text, width, height, back_button
+    global head_color_widget, body_color_widget, username_widget, selected_color_head, selected_color_body, start_button, username, controls_button, head_color_text, body_color_text
+    global username_text, controls1, controls2, controls3, controls4, controls5, controls6, controls7, controls8, controls9, border_widget, border_text, checkboxstate
+    
+    start_button.destroy()
+    head_color_widget.destroy()
+    body_color_widget.destroy()
+    username_widget.destroy()
+    head_color_text.destroy()
+    body_color_text.destroy()
+    username_text.destroy()
+    controls_button.destroy()
+    border_widget.destroy()
+    border_text.destroy()
+    
+    back_button=tkinter.Button(window, text ="Back", command = go_back, justify="center", height=2,width=15, bg="white")
+    back_button.place(x=0, y=0)
+    controls1=tkinter.Label(window, text="Go faster = F", font="Times 20 bold")
+    controls1.place(x=170, y=50)
+    controls2=tkinter.Label(window, text="Go slower = D", font="Times 20 bold")
+    controls2.place(x=170, y=90)
+    controls3=tkinter.Label(window, text="Shrink one = S", font="Times 20 bold")
+    controls3.place(x=170, y=130)
+    controls4=tkinter.Label(window, text="Shrink all = A", font="Times 20 bold")
+    controls4.place(x=170, y=170)
+    controls5=tkinter.Label(window, text="Pause and Resume = P and R", font="Times 20 bold")
+    controls5.place(x=70, y=210)
+    controls6=tkinter.Label(window, text="Boss key = E (close from top right corner 'X')", font="Times 17 bold")
+    controls6.place(x=25, y=250)
+    controls7=tkinter.Label(window, text="Destroy window immidiately = B", font="Times 20 bold")
+    controls7.place(x=57, y=290)
+    controls8=tkinter.Label(window, text="-For controls use = Arrows on the keyboard-", font="Times 17 bold")
+    controls8.place(x=25, y=330)
+    controls9=tkinter.Label(window, text="Red box = Bonus Food", font="Times 20 bold")
+    controls9.place(x=120, y=370)
+    
+    
+
+def start():
+    global window, canvas, snake, scoreText, resume_counter, resume_key_show, save_game, saving_game, speed_text, width, height, back_button
+    global head_color_widget, body_color_widget, username_widget, selected_color_head, selected_color_body, start_button, quit_button, username, controls_button, head_color_text, body_color_text
+    global username_text, controls1, controls2, border_widget, border_text, checkboxstate, border, NW, generate_random
+    
+    selected_color_head=head_color_widget.get()
+    selected_color_body=body_color_widget.get()
+    username=username_widget.get()
+    if str(selected_color_head) == "RANDOM":
+        selected_color_head = random.choice(colours)
+    if selected_color_body == "RANDOM EACH TIME!":
+        generate_random = 1
+        
+    if checkboxstate.get()==1:
+        border=True
+    
+    
+    
+    width=GetSystemMetrics(0)
+    height=GetSystemMetrics(1)-75
+    window.geometry(str(width)+"x"+str(height))
+    
+    start_button.destroy()
+    head_color_widget.destroy()
+    body_color_widget.destroy()
+    username_widget.destroy()
+    controls_button.destroy()
+    quit_button.destroy()
+    
+    canvas = Canvas(window, bg="black", width=width, height=height)
+    snake.append(canvas.create_rectangle(snakeSize,snakeSize, snakeSize * 2, snakeSize * 2, fill=selected_color_head))
+    scoreText = canvas.create_text(width/2,10,fill="white",font="Times 20 italic bold", text=txt) 
+    resume_counter=canvas.create_text(width/2,height/2,fill="white",font="Times 20 italic bold", text="")
+    resume_key_show=canvas.create_text(width/2,height/2,fill="white",font="Times 20 italic bold", text="")
+    save_game=canvas.create_text(width/2, height/3, fill="white", font="Times 20 italic bold", text="")
+    saving_game=canvas.create_text(width/2, height/4, fill="white", font="Times 20 italic bold", text="")
+    speed_text=canvas.create_text((width/2),50,fill="white",font="Times 20 italic bold", text="Speed: Level " + str(speed_level))
+    canvas.bind("<Left>", leftKey)
+    canvas.bind("<Right>", rightKey)
+    canvas.bind("<Up>", upKey)
+    canvas.bind("<Down>", downKey)
+    canvas.bind("p", pause)
+    canvas.bind("r", resume)
+    canvas.bind("s", shrink)
+    canvas.bind("a", shrinkall)
+    canvas.bind("g", grow)
+    canvas.bind("f", faster)
+    canvas.bind("d", slower)
+    canvas.bind("b", boss_key)
+    canvas.bind("e", show_controls)
+    canvas.bind("l", leaderboard_load)
+    canvas.bind("q", quit_game)
+    canvas.bind("<space>", play)
+    if border is True:
+        canvas.create_line(1,1,width-1,1,width-1,height-1,1,height-1,1,1, fill="green")
+        canvas.create_line(2,2,width-2,2,width-2,height-2,2,height-2,2,2, fill="green")
+        canvas.create_line(3,3,width-3,3,width-3,height-3,3,height-3,3,3, fill="green")
+        canvas.create_line(4,4,width-4,4,width-4,height-4,4,height-4,4,4, fill="green")
+        canvas.create_line(5,5,width-5,5,width-5,height-5,5,height-5,5,5, fill="green")
+
+
+
+    #canvas.bind("k", save)
+    canvas.focus_set()
+    window.state('zoomed')
+    window.after(800, speed_text_delete)
+    placeFood()
+    moveSnake()
+
+def start_menu():
+    global window, canvas, snake, scoreText, resume_counter, resume_key_show, save_game, saving_game, speed_text, width, height, back_button
+    global head_color_widget, body_color_widget, username_widget, selected_color_head, selected_color_body, start_button, quit_button, username, controls_button, head_color_text, body_color_text
+    global username_text, controls1, controls2, border_widget, border_text, checkboxstate, image
+    
+    checkboxstate=tkinter.IntVar()
+    
+    image = PhotoImage(file="game9.png")
+    background_label = tkinter.Label(window, image=image)
+    background_label.place(x=0, y=0)
+    
+    start_button = tkinter.Button(window, text ="Start", command = start, justify="center", height=2,width=15, bg="white")
+    start_button.place(x=200, y=150)
+    
+    controls_button=tkinter.Button(window, text ="Controls", command = show_controls1, justify="center", height=2,width=15, bg="white")
+    controls_button.place(x=200, y=190)
+    
+    head_color_text =tkinter.Label(window, text="Chose snake head colour")
+    head_color_text.place(x=25, y=20)
+    head_color_widget = ttk.Combobox(window, values=["white", "blue", "red", "yellow", "green", "indigo", "violet", "RANDOM"])
+    head_color_widget.current(0)
+    head_color_widget.place(x=185, y=20)
+    
+    body_color_text =tkinter.Label(window, text="Chose snake body colour")
+    body_color_text.place(x=25, y=50)
+    body_color_widget = ttk.Combobox(window, values=["white", "blue", "red", "yellow", "green", "indigo", "violet", "RANDOM EACH TIME!"])
+    body_color_widget.current(0)
+    body_color_widget.place(x=185, y=50)
+    
+    username_text=tkinter.Label(window, text="Username")
+    username_text.place(x=25, y=80)
+    username_widget=tkinter.Entry(window,bd =3)
+    username_widget.place(x=190, y=80)
+
+    border_text = tkinter.Label(window, text="Walls")
+    border_text.place(x=25, y=110)
+    border_widget = tkinter.Checkbutton(window, variable=checkboxstate)
+    border_widget.place(x=245, y=110)
+    
+    quit_button = tkinter.Button(window, text ="Quit", command = quit_game_menu, justify="center", height=2,width=15, bg="white")
+    quit_button.place(x=385, y=458)
+    
+
+
+j = 0
+while j<2:
+        
+    if j == 0:
+        generate_random=0
+        colours = ["white", "blue", "red", "yellow", "green", "indigo", "violet", "pink", "purple", "brown", "grey", "lime", "crimson", "Aquamarine" ]
+        
+        width = 500  # width of snakes world
+        height = 500 # height of snakes world 
+        snake = []
+        snake_body = []
+        snakeSize = 15
+        score=0
+        speed_level=10
+        txt = "Score:" + str(score)
+        filename="Scores.txt"
+        direction  = "right"
+        lastdirection = direction
+        counter=4
+        count_times=0
+        paused=False
+        shrinkk = False
+        lastElementDelete = len(snake)
+        length = 0
+        speed = 100
+        eat_count=0
+        speed_changing=True
+        bonus_food_placed=False
+        border=False
+        gameOver=False
+        finish = False
+        quit_f = False
+
+        
+        
+        window = Tk()
+
+
+
+
+        start_menu()
+        window.geometry(str(width)+"x"+str(height))
+        window.mainloop()
+        if quit_f is False:
+            f.close()
+    elif j == 1:
+        break    
